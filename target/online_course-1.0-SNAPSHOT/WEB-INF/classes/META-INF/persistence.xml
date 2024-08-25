@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.htn_online_course_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.htn.pojo.SaleOrder</class>
+    <class>com.htn.pojo.User</class>
+    <class>com.htn.pojo.Category</class>
+    <class>com.htn.pojo.OrderDetail</class>
+    <class>com.htn.pojo.Comment</class>
+    <class>com.htn.pojo.Tag</class>
+    <class>com.htn.pojo.ProdTag</class>
+    <class>com.htn.pojo.Product</class>
+    <class>com.htn.pojo.Rating</class>
+    <class>com.htn.pojo.Document</class>
+    <class>com.htn.pojo.Lecture</class>
+    <class>com.htn.pojo.Exercise</class>
+    <class>com.htn.pojo.Submission</class>
+    <class>com.htn.pojo.Enrollment</class>
+    <class>com.htn.pojo.Course</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saledb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Admin@123"/>
+    </properties>
+  </persistence-unit>
+</persistence>
