@@ -121,7 +121,7 @@ public class CourseRepositoryImpl implements CourseRepository {
         Query q = s.createQuery("SELECT Count (*) FROM Course");
 
         return Integer.parseInt(q.getSingleResult().toString());
-
+        
     }
 
     @Override

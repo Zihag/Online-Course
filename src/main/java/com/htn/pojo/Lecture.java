@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Lecture.findByTitle", query = "SELECT l FROM Lecture l WHERE l.title = :title"),
     @NamedQuery(name = "Lecture.findByCreatedAt", query = "SELECT l FROM Lecture l WHERE l.createdAt = :createdAt"),
     @NamedQuery(name = "Lecture.findByUpdatedAt", query = "SELECT l FROM Lecture l WHERE l.updatedAt = :updatedAt"),
-    @NamedQuery(name = "Lecture.findByLecturecol", query = "SELECT l FROM Lecture l WHERE l.lecturecol = :lecturecol")})
+    @NamedQuery(name = "Lecture.findByLecturecol", query = "SELECT l FROM Lecture l WHERE l.lecturecol = :lecturecol"),
+    @NamedQuery(name = "Lecture.findByUrl", query = "SELECT l FROM Lecture l WHERE l.url = :url")})
 public class Lecture implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,6 +62,9 @@ public class Lecture implements Serializable {
     @Size(max = 45)
     @Column(name = "lecturecol")
     private String lecturecol;
+    @Size(max = 200)
+    @Column(name = "url")
+    private String url;
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne
     private Course courseId;
@@ -118,6 +122,14 @@ public class Lecture implements Serializable {
 
     public void setLecturecol(String lecturecol) {
         this.lecturecol = lecturecol;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Course getCourseId() {

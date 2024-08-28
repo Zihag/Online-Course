@@ -5,11 +5,14 @@
 package com.htn.controllers;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.Lecture;
 import com.htn.service.CourseService;
+import com.htn.service.LectureService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,4 +45,11 @@ public class ApiCourseController {
     public ResponseEntity<List<Course>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.courseService.getCourses(params), HttpStatus.OK);
     }
+    
+    @GetMapping(path = "/courses/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public ResponseEntity<Course> details(@PathVariable(value="courseId") int id) {
+        return new ResponseEntity<>(this.courseService.getCourseById(id), HttpStatus.OK);
+    }
+    
 }

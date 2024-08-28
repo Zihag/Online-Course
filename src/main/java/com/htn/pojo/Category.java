@@ -34,12 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id")})
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @Lob
     @Size(max = 65535)
     @Column(name = "name")
@@ -48,6 +42,13 @@ public class Category implements Serializable {
     @Size(max = 65535)
     @Column(name = "description")
     private String description;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private Collection<Course> courseCollection;
@@ -67,21 +68,6 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     @XmlTransient
     public Collection<Course> getCourseCollection() {
@@ -115,6 +101,22 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return "com.htn.pojo.Category[ id=" + id + " ]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

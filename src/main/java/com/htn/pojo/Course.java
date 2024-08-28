@@ -48,35 +48,36 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Course.findByCoverImg", query = "SELECT c FROM Course c WHERE c.coverImg = :coverImg")})
 public class Course implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
-    @NotNull(message = "{course.title.notNull}")
+    @NotNull
     @Lob
-    @Size(min = 1, max = 65535, message = "{course.title.lenErr}")
+    @Size(min = 1, max = 65535)
     @Column(name = "title")
     private String title;
     @Lob
-    @Size(min = 10, max = 65535, message = "{course.description.lenErr}")
+    @Size(max = 65535)
     @Column(name = "description")
     private String description;
     @Basic(optional = false)
     @NotNull
     @Column(name = "price")
     private double price;
+    @Size(max = 100)
+    @Column(name = "cover_img")
+    private String coverImg;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Column(name = "update_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
-    @Size(max = 255)
-    @Column(name = "cover_img")
-    private String coverImg;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
     @JsonIgnore
     private Collection<Document> documentCollection;
@@ -132,39 +133,6 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPrice() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###,###,###");
-        return decimalFormat.format(price);
-    }
-
-    public void setPrice(String price) {
-        if (price != null && !price.isEmpty()) {
-            try {
-                this.price = Double.parseDouble(price.replaceAll(",", ""));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Invalid price format: " + price);
-            }
-        }
-    }
-//    public void setPrice(double price) {
-//        this.price = price;
-//    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -290,5 +258,29 @@ public class Course implements Serializable {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
