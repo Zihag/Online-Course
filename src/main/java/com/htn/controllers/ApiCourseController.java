@@ -7,7 +7,6 @@ package com.htn.controllers;
 import com.htn.pojo.Course;
 import com.htn.pojo.Lecture;
 import com.htn.service.CourseService;
-import com.htn.service.LectureService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,7 @@ public class ApiCourseController {
 
     @Autowired
     private CourseService courseService;
+    
 
     @DeleteMapping("/courses/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -48,8 +48,8 @@ public class ApiCourseController {
     
     @GetMapping(path = "/courses/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public ResponseEntity<Course> details(@PathVariable(value="courseId") int id) {
-        return new ResponseEntity<>(this.courseService.getCourseById(id), HttpStatus.OK);
+    public ResponseEntity<CourseDTO> details(@PathVariable(value="courseId") Integer id) {
+        return new ResponseEntity<>(this.courseService.getCourseDTOById(id), HttpStatus.OK);
     }
     
 }

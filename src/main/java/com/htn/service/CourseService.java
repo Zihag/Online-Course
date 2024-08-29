@@ -4,6 +4,7 @@
  */
 package com.htn.service;
 
+import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,5 @@ public interface CourseService {
     void addOrUpdateCourse(Course c);
     Course getCourseById(int id);
     boolean deleteCouse(int id);
+    CourseDTO getCourseDTOById(Integer courseId);
 }
