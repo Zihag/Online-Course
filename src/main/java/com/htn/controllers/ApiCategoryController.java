@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ApiCategoryController {
     @Autowired
     public CategoryService cateService;
     
     @GetMapping("/categories")
-//    @CrossOrigin
     public ResponseEntity<List<Category>> list(){
         return new ResponseEntity<>(this.cateService.getCates(), HttpStatus.OK);
     }
