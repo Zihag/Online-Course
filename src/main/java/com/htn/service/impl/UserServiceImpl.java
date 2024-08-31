@@ -5,12 +5,21 @@
 package com.htn.service.impl;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
 import com.htn.service.UserService;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -27,10 +37,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userDetailsService")
 public class UserServiceImpl implements UserService {
 
-    
-
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private Cloudinary cloudinary;
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
 
     @Override
     public List<User> getUsersByRole(String role) {
@@ -49,8 +61,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-
-        return this.userRepo.getUserByUsername(username);
+        User user = this.userRepo.getUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("user not find with username: " + username);
+        }
+        return user;
     }
 
     @Override
@@ -65,7 +80,44 @@ public class UserServiceImpl implements UserService {
         authorities.add(new SimpleGrantedAuthority(u.getRole()));
 
         return new org.springframework.security.core.userdetails.User(
-                u.getUserName(), u.getPassword(), authorities);
+                u.getUsername(), u.getPassword(), authorities);
+    }
+
+    @Override
+    public boolean authUser(String username, String password) {
+        return this.userRepo.authUser(username, password);
+    }
+
+    @Override
+    public User addUser(Map<String, String> params, MultipartFile avatar) {
+        User u = new User();
+        u.setFullName(params.get("fullName"));
+        u.setUsername(params.get("username"));
+        u.setPassword(this.passEncoder.encode(params.get("password")));
+        u.setPhone(params.get("phone"));
+        u.setGender(params.get("gender"));
+        u.setRole(params.get("role"));
+        String dobString = params.get("dob");
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date dob = dateFormat.parse(dobString);
+
+            u.setDob(dob);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (!avatar.isEmpty()) {
+            try {
+                Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
+                        ObjectUtils.asMap("resource_type", "auto"));
+                u.setAvatar(res.get("secure_url").toString());
+            } catch (IOException ex) {
+                Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return null;
     }
 
 }

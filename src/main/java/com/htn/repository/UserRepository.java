@@ -17,5 +17,7 @@ public interface UserRepository {
     boolean deleteTeacher(int id);
     User getUserById(int id);
     User getUserByUsername(String username);
+    User addUser(User user);
+    boolean authUser(String username, String password);
 }
 

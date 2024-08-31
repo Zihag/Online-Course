@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ApiCourseController {
 
     @Autowired
@@ -47,7 +48,6 @@ public class ApiCourseController {
     }
     
     @GetMapping(path = "/courses/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin
     public ResponseEntity<Course> details(@PathVariable(value="courseId") int id) {
         return new ResponseEntity<>(this.courseService.getCourseById(id), HttpStatus.OK);
     }
