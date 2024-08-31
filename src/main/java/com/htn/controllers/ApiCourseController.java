@@ -29,10 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ApiCourseController {
-
     @Autowired
     private CourseService courseService;
-    
 
     @DeleteMapping("/courses/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -51,5 +49,4 @@ public class ApiCourseController {
     public ResponseEntity<CourseDTO> details(@PathVariable(value="courseId") Integer id) {
         return new ResponseEntity<>(this.courseService.getCourseDTOById(id), HttpStatus.OK);
     }
-    
 }
