@@ -145,7 +145,6 @@ public class User implements Serializable {
         this.username = username;
     }
 
-
     public String getFullName() {
         return fullName;
     }
@@ -154,7 +153,6 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
-
     public Date getDob() {
         return dob;
     }
@@ -162,7 +160,6 @@ public class User implements Serializable {
     public void setDob(Date dob) {
         this.dob = dob;
     }
-
 
     public Date getCreatedAt() {
         return createdAt;
@@ -240,7 +237,7 @@ public class User implements Serializable {
     public String toString() {
         return "com.htn.pojo.User[ id=" + id + " ]";
     }
-    
+
     @PrePersist
     protected void onCreate() {
         createdAt = new Date(); // Gán thời gian hiện tại

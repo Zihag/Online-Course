@@ -50,7 +50,9 @@ public class CourseRepositoryImpl implements CourseRepository {
             List<Predicate> predicates = new ArrayList<>();
             String kw = params.get("kw");
             if (kw != null && !kw.isEmpty()) {
-                Predicate p1 = b.like(root.get("title"), String.format("%%%s%%", kw));
+                Predicate titlePredicate = b.like(root.get("title"), String.format("%%%s%%", kw));
+                Predicate teacherNamePredicate = b.like(root.get("teacherId").get("fullName"), String.format("%%%s%%", kw));
+                Predicate p1 = b.or(titlePredicate, teacherNamePredicate);
                 predicates.add(p1);
             }
 
@@ -72,10 +74,26 @@ public class CourseRepositoryImpl implements CourseRepository {
                 predicates.add(p4);
             }
 
+            //SORT
+            String sortBy = params.get("sortBy");
+            String sortOrder = params.get("sortOrder");
+
+            if (sortBy != null && !sortBy.isEmpty()) {
+                if ("asc".equalsIgnoreCase(sortOrder)) {
+                    q.orderBy(b.asc(root.get(sortBy)));
+                } else if ("desc".equalsIgnoreCase(sortOrder)) {
+                    q.orderBy(b.desc(root.get(sortBy)));
+                } else {
+                    // Mặc định sắp xếp tăng dần theo trường sortBy
+                    q.orderBy(b.asc(root.get(sortBy)));
+                }
+            } else {
+                // Nếu không có tham số sortBy, mặc định sắp xếp giảm dần theo id
+                q.orderBy(b.asc(root.get("id")));
+            }
+            //SORT   
             q.where(predicates.toArray(Predicate[]::new));
         }
-
-        q.orderBy(b.desc(root.get("id")));
         Query query = s.createQuery(q);
 
         if (params != null) {
@@ -121,7 +139,7 @@ public class CourseRepositoryImpl implements CourseRepository {
         Query q = s.createQuery("SELECT Count (*) FROM Course");
 
         return Integer.parseInt(q.getSingleResult().toString());
-        
+
     }
 
     @Override

@@ -4,6 +4,7 @@
  */
 package com.htn.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -67,6 +68,7 @@ public class Lecture implements Serializable {
     private String url;
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Course courseId;
 
     public Lecture() {
@@ -164,5 +166,5 @@ public class Lecture implements Serializable {
     public String toString() {
         return "com.htn.pojo.Lecture[ id=" + id + " ]";
     }
-    
+
 }

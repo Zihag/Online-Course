@@ -6,14 +6,18 @@ package com.htn.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
+import com.htn.pojo.Lecture;
 import com.htn.repository.CourseRepository;
 import com.htn.service.CourseService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +26,11 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
+
     @Autowired
     private CourseRepository courseRepo;
-    
+
     //UPLOAD ANH
     @Autowired
     private Cloudinary cloudinary;
@@ -58,10 +63,28 @@ public class CourseServiceImpl implements CourseService{
     public Course getCourseById(int id) {
         return this.courseRepo.getCourseById(id);
     }
-
     @Override
     public boolean deleteCouse(int id) {
         return this.courseRepo.deleteCouse(id);
     }
+
     
+    public CourseDTO getCourseDTOById(Integer courseId) {
+        Course course = courseRepo.getCourseById(courseId);
+
+            // Chuyển Collection<Lecture> sang List<Lecture>
+            List<Lecture> lectures = course.getLectureCollection().stream().collect(Collectors.toList());
+
+            // Tạo CourseDTO và set các giá trị cần thiết
+            CourseDTO courseDTO = new CourseDTO();
+            courseDTO.setId(course.getId());
+            courseDTO.setTitle(course.getTitle());
+            courseDTO.setDescription(course.getDescription());
+            courseDTO.setPrice(course.getPrice());
+            courseDTO.setCoverImg(course.getCoverImg());
+            courseDTO.setLectures(lectures);
+
+            return courseDTO;
+    }
+
 }
