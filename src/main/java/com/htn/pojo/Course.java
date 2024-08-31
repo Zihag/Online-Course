@@ -89,12 +89,11 @@ public class Course implements Serializable {
     
     @JoinColumn(name = "category", referencedColumnName = "id")
     @ManyToOne
-    @JsonIgnore
     private Category category;
     
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     private User teacherId;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")

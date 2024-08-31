@@ -5,7 +5,6 @@
 package com.htn.controllers;
 
 import com.htn.pojo.Course;
-import com.htn.pojo.Lecture;
 import com.htn.service.CourseService;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +40,7 @@ public class ApiCourseController {
     }
 
     @GetMapping("/courses")
-//    @CrossOrigin
+//    @CrossOrigin(origins = "")
     public ResponseEntity<List<Course>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.courseService.getCourses(params), HttpStatus.OK);
     }

@@ -4,6 +4,7 @@
  */
 package com.htn.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -100,12 +101,16 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Collection<Rating> ratingCollection;
     @OneToMany(mappedBy = "teacherId")
+    @JsonIgnore
     private Collection<Course> courseCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentId")
+    @JsonIgnore
     private Collection<Submission> submissionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentId")
+    @JsonIgnore
     private Collection<Enrollment> enrollmentCollection;
 
     public User() {
@@ -139,7 +144,6 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-
     public String getFullName() {
         return fullName;
     }
@@ -148,7 +152,6 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
-
     public Date getDob() {
         return dob;
     }
@@ -156,7 +159,6 @@ public class User implements Serializable {
     public void setDob(Date dob) {
         this.dob = dob;
     }
-
 
     public Date getCreatedAt() {
         return createdAt;
@@ -234,7 +236,7 @@ public class User implements Serializable {
     public String toString() {
         return "com.htn.pojo.User[ id=" + id + " ]";
     }
-    
+
     @PrePersist
     protected void onCreate() {
         createdAt = new Date(); // Gán thời gian hiện tại
