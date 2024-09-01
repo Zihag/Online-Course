@@ -4,6 +4,7 @@
  */
 package com.htn.controllers;
 
+import com.htn.pojo.Document;
 import com.htn.pojo.Lecture;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class CourseDTO {
     private double price;
     private String coverImg;
     private List<Lecture> lectures;
+    private List<Document> documents;
 
     // Getters and Setters
     public Integer getId() {
@@ -68,6 +70,14 @@ public class CourseDTO {
 
     public void setLectures(List<Lecture> lectures) {
         this.lectures = lectures;
+    }
+    
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 }
 

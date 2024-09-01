@@ -79,7 +79,7 @@ public class Course implements Serializable {
     @Column(name = "update_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId", fetch = FetchType.EAGER)
     @JsonIgnore
     private Collection<Document> documentCollection;
     

@@ -25,9 +25,9 @@
     </div>
 
     <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="userName" id="userName" placeholder="Enter username" />
+        <form:input type="text" class="form-control" path="username" id="username" placeholder="Enter username" />
         <label for="userName">User name:</label>
-        <form:errors path="userName" element="div" cssClass="text-danger"/>
+        <form:errors path="username" element="div" cssClass="text-danger"/>
     </div>
 
     <div class="form-floating mb-3 mt-3">
