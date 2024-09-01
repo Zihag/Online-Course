@@ -8,6 +8,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
+import com.htn.pojo.Document;
 import com.htn.pojo.Lecture;
 import com.htn.pojo.User;
 import com.htn.repository.CourseRepository;
@@ -21,11 +22,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Admin
  */
+//Thêm transactional de mo Session duoc lau hon, lay duoc collection
+@Transactional
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -72,10 +76,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     
+    @Override
     public CourseDTO getCourseDTOById(Integer courseId) {
         Course course = courseRepo.getCourseById(courseId);
 
             // Chuyển Collection<Lecture> sang List<Lecture>
+            List<Document> documents = course.getDocumentCollection().stream().collect(Collectors.toList());
             List<Lecture> lectures = course.getLectureCollection().stream().collect(Collectors.toList());
 
             // Tạo CourseDTO và set các giá trị cần thiết
@@ -85,6 +91,7 @@ public class CourseServiceImpl implements CourseService {
             courseDTO.setDescription(course.getDescription());
             courseDTO.setPrice(course.getPrice());
             courseDTO.setCoverImg(course.getCoverImg());
+            courseDTO.setDocuments(documents);
             courseDTO.setLectures(lectures);
 
             return courseDTO;

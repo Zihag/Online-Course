@@ -28,6 +28,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-bold" href="${documentAction}">Document Manage</a>
+                    <a class="nav-link fw-bold" href="${teacherAction}">Lecture Manage</a>
                 </li>
                 <div class="dropdown">
                     <div class="dropdown">
