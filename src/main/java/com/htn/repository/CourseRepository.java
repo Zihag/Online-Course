@@ -5,6 +5,7 @@
 package com.htn.repository;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.User;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +14,13 @@ import java.util.Map;
  * @author Admin
  */
 public interface CourseRepository {
+    List<Course> getAllCourses();
     List<Course> getCourses(Map<String, String> params);
     int countCourse();
     
     void addOrUpdateCourse(Course c);
     Course getCourseById(int id);
     boolean deleteCouse(int id);
+    void assignTeacherToCourse(Course course, User teacher);
+
 }

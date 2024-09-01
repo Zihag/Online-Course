@@ -11,6 +11,9 @@
     <div class="mb-3">
         <a href="<c:url value="/teachers/add-teacher"/>" class="btn btn-info">Add Teacher</a>
     </div>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger">${errorMessage}</div>
+    </c:if>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,6 +22,7 @@
                 <th>Gender</th>
                 <th>Email</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -29,12 +33,13 @@
                     <td>${teacher.gender}</td>
                     <td>${teacher.email}</td>
                     <td>
-                        <a href="#" class="btn btn-success btn-sm ms-2">
-                            Add class
-                        </a>
-                        <a href="#" class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <!-- Form to delete teacher -->
+                        <form action="<c:url value="/teachers/delete"/>" method="post" style="display:inline;">
+                            <input type="hidden" name="teacherId" value="${teacher.id}" />
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>

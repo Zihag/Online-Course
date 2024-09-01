@@ -5,7 +5,10 @@
 package com.htn.controllers;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.User;
 import com.htn.service.CourseService;
+import com.htn.service.UserService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -25,10 +29,13 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/courses")
     public String list(Model model) {
         model.addAttribute("course", new Course());
+
         return "courses";
     }
 
@@ -45,6 +52,29 @@ public class CourseController {
     @GetMapping("/courses/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("course", this.courseService.getCourseById(id));
+        List<User> teachers = userService.getUsersByRole("ROLE_TEACHER");
+        model.addAttribute("teachers", teachers);
         return "courses";
+    }
+    
+    @GetMapping("/courses/assign-teacher/{id}")
+    public String showAssignTeacherForm(@PathVariable("id") int courseId, Model model) {
+        Course course = courseService.getCourseById(courseId);
+        List<User> teachers = userService.getUsersByRole("ROLE_TEACHER");
+        model.addAttribute("assignedCourse", course);
+        model.addAttribute("teachers", teachers);
+        return "assign-teacher";
+    }
+
+    @PostMapping("/courses/assign-teacher")
+    public String assignTeacherToCourse(@ModelAttribute(value = "course") @Valid Course c,
+                                        @RequestParam("teacher") User teacher,
+                                        BindingResult result,
+                                        Model model) {
+        if (result.hasErrors()) {
+            return "assign-teacher";
+        }
+        this.courseService.assignTeacherToCourse(c, teacher);
+        return "redirect:/";
     }
 }

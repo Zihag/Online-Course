@@ -17,4 +17,5 @@ public interface DocumentRepository {
     Document getDocumentById(int id);
     boolean deleteDocument(int id);
     void addOrUpdate(Document docu);
+    List<Document> getAllDocuments();
 }

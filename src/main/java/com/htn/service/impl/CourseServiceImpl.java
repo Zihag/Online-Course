@@ -9,6 +9,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
 import com.htn.pojo.Lecture;
+import com.htn.pojo.User;
 import com.htn.repository.CourseRepository;
 import com.htn.service.CourseService;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private Cloudinary cloudinary;
 
+    
+    
     @Override
     public List<Course> getCourses(Map<String, String> params) {
         return this.courseRepo.getCourses(params);
@@ -85,6 +88,16 @@ public class CourseServiceImpl implements CourseService {
             courseDTO.setLectures(lectures);
 
             return courseDTO;
+    }
+
+    @Override
+    public void assignTeacherToCourse(Course course, User teacher) {
+        this.courseRepo.assignTeacherToCourse(course, teacher);
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        return this.courseRepo.getAllCourses();
     }
 
 }

@@ -5,6 +5,7 @@
 package com.htn.repository.implement;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.User;
 import com.htn.repository.CourseRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,15 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Autowired
     private Environment env;
 
+    
+    @Override
+    public List<Course> getAllCourses() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Course");
+        
+        return q.getResultList();
+    }
+
     @Override
     public List<com.htn.pojo.Course> getCourses(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -51,7 +61,7 @@ public class CourseRepositoryImpl implements CourseRepository {
             String kw = params.get("kw");
             if (kw != null && !kw.isEmpty()) {
                 Predicate titlePredicate = b.like(root.get("title"), String.format("%%%s%%", kw));
-                Predicate teacherNamePredicate = b.like(root.get("teacherId").get("fullName"), String.format("%%%s%%", kw));
+                Predicate teacherNamePredicate = b.like(root.get("teacher").get("fullName"), String.format("%%%s%%", kw));
                 Predicate p1 = b.or(titlePredicate, teacherNamePredicate);
                 predicates.add(p1);
             }
@@ -168,6 +178,18 @@ public class CourseRepositoryImpl implements CourseRepository {
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void assignTeacherToCourse(Course course, User teacher) {
+        Session session = this.factory.getObject().getCurrentSession();
+        Course c = session.get(Course.class, course.getId());
+
+        if (c != null) {
+            c.setTeacher(teacher);
+            session.update(c);
         }
     }
 }

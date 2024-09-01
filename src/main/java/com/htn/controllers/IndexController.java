@@ -4,8 +4,13 @@
  */
 package com.htn.controllers;
 
+import com.htn.pojo.Course;
+import com.htn.pojo.User;
+import com.htn.repository.UserRepository;
 import com.htn.service.CategoryService;
 import com.htn.service.CourseService;
+import com.htn.service.UserService;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +45,8 @@ public class IndexController {
     private CategoryService cateService;
     @Autowired
     private Environment env;
+    @Autowired
+    private UserService userService;
 
     @ModelAttribute
     public void commonAttr(Model model) {
@@ -46,7 +54,6 @@ public class IndexController {
     }
 
     @RequestMapping("/")
-    
     public String index(Model model, @RequestParam Map<String, String> params) {
 
         model.addAttribute("courses", this.courseService.getCourses(params));
@@ -57,6 +64,4 @@ public class IndexController {
 
         return "index";
     }
-
-   
 }

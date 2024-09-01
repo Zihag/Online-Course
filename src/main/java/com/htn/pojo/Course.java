@@ -94,7 +94,7 @@ public class Course implements Serializable {
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     @ManyToOne
 //    @JsonIgnore
-    private User teacherId;
+    private User teacher;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
     @JsonIgnore
@@ -184,12 +184,12 @@ public class Course implements Serializable {
         this.category = category;
     }
 
-    public User getTeacherId() {
-        return teacherId;
+    public User getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(User teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
     }
 
     @XmlTransient
