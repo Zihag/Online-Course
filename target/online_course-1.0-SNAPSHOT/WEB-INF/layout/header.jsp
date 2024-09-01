@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bold" href="${teacherAction}">Teacher Manage</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="${teacherAction}">Lecture Manage</a>
+                </li>
                 <div class="dropdown">
                     <div class="dropdown">
                         <button type="button" class="btn dropdown-toggle fw-bold" data-bs-toggle="dropdown">

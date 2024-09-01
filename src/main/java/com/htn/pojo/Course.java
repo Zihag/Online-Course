@@ -31,6 +31,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -81,6 +83,7 @@ public class Course implements Serializable {
     private Date updateAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId", fetch = FetchType.EAGER)
     @JsonIgnore
+    @Fetch(FetchMode.SUBSELECT)
     private Collection<Document> documentCollection;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
@@ -102,6 +105,7 @@ public class Course implements Serializable {
     
     @OneToMany(mappedBy = "courseId",fetch = FetchType.EAGER)
     @JsonIgnore
+    @Fetch(FetchMode.SUBSELECT)
     private Collection<Lecture> lectureCollection;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
