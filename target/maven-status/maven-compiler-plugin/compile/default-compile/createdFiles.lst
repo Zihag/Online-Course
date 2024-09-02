@@ -14,6 +14,7 @@ com\htn\service\impl\UserServiceImpl.class
 com\htn\controllers\IndexController.class
 com\htn\controllers\TeacherController.class
 com\htn\repository\StatsRepository.class
+com\htn\controllers\APIDocumentController.class
 com\htn\pojo\Submission_.class
 com\htn\controllers\CourseDTO.class
 com\htn\repository\implement\CategoryRepositoryImpl.class
@@ -29,6 +30,7 @@ com\htn\pojo\User_.class
 com\htn\service\impl\DocumentServiceImpl.class
 com\htn\pojo\Lecture.class
 com\htn\controllers\ApiCategoryController.class
+com\htn\formatter\CourseFormatter.class
 com\htn\pojo\Document_.class
 com\htn\configs\WebAppContextConfig.class
 com\htn\pojo\Category.class

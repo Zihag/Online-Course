@@ -51,7 +51,7 @@
                             <c:url value="/api/courses/${c.id}" var="apiDel"/>
                             <a href="<c:url value="/courses/${c.id}"/>" class="btn btn-success">Update</a>
                             <button class="btn btn-danger" onclick="delCourse('${apiDel}', ${c.id})">Delete</button>
-                            <a href="<c:url value="/courses/assign-teacher/${c.id}"/>" class="btn btn-primary">Add Teacher</a>
+                            <a href="<c:url value="/courses/assign-teacher/${c.id}"/>" class="btn btn-primary">Assign teacher</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -7,6 +7,7 @@ package com.htn.configs;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htn.formatter.CategoryFormatter;
+import com.htn.formatter.CourseFormatter;
 import com.htn.formatter.UserFormatter;
 import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new CategoryFormatter());
         registry.addFormatter(new UserFormatter());
+        registry.addFormatter(new CourseFormatter());
     }
 
     @Override
