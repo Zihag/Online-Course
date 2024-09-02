@@ -20,12 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
  * @author DELL
  */
 @Repository
+@Transactional
 public class DocumentRepositoryImpl implements DocumentRepository {
 
     @Autowired
@@ -47,7 +50,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
             String courseId = params.get("courseId");
             if (courseId != null && !courseId.isEmpty()) {
-                Predicate p1 = b.equal(root.get("course"), Integer.parseInt(courseId));
+                Predicate p1 = b.equal(root.get("courseId"), Integer.parseInt(courseId));
                 predicates.add(p1);
             }
 
@@ -89,6 +92,11 @@ public class DocumentRepositoryImpl implements DocumentRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Document> getAllDocuments() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

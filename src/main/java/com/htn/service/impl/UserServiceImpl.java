@@ -120,4 +120,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public User getUserById(int id) {
+        return this.userRepo.getUserById(id);
+    }
+
+    @Override
+    public boolean deleteTeacher(int id) {
+        return this.userRepo.deleteTeacher(id);
+    }
+
 }

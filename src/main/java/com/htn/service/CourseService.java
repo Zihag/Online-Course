@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
@@ -6,6 +6,7 @@ package com.htn.service;
 
 import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
+import com.htn.pojo.User;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +21,6 @@ public interface CourseService {
     Course getCourseById(int id);
     boolean deleteCouse(int id);
     CourseDTO getCourseDTOById(Integer courseId);
+    void assignTeacherToCourse(Course course, User teacher);
+    List<Course> getAllCourses();
 }

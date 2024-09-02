@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:url value="/" var ="action" />
 <c:url value="/teachers" var="teacherAction"/>
+<c:url value="/documents" var="documentAction"/>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.05);">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="javascript:void(0)">Online Course</a>
@@ -26,6 +27,7 @@
                     <a class="nav-link fw-bold" href="${teacherAction}">Teacher Manage</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fw-bold" href="${documentAction}">Document Manage</a>
                     <a class="nav-link fw-bold" href="${teacherAction}">Lecture Manage</a>
                 </li>
                 <div class="dropdown">
@@ -50,7 +52,17 @@
                 <input class="form-control" type="text" name="kw" placeholder="Search" aria-label="Search">
                 <button data-mdb-ripple-init class="btn btn-outline-primary" type="submit" data-mdb-ripple-color="dark">Search</button>
             </form>
-            <a class="nav-link fw-bold text-primary" href="<c:url value="/"/>">Chào ${pageContext.request.userPrincipal.name}!</a>
+            <c:choose>
+                <c:when test="${not empty pageContext.request.userPrincipal}">
+                    <a class="nav-link fw-bold text-primary" href="<c:url value='/'/>">Chào ${pageContext.request.userPrincipal.name}!</a>
+                    <a class="btn btn-danger" href="<c:url value="/logout" />">
+                        Đăng xuất
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a class="nav-link fw-bold text-primary" href="<c:url value='/login'/>">Login</a>
+                </c:otherwise>
+            </c:choose>
 
         </div>
     </div>

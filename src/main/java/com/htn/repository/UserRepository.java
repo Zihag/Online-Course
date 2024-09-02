@@ -12,12 +12,13 @@ import java.util.List;
  * @author DELL
  */
 public interface UserRepository {
-    List<User> getUserByRole(String role);
-    void addOrUpdateTeacher(User u);
-    boolean deleteTeacher(int id);
     User getUserById(int id);
     User getUserByUsername(String username);
     User addUser(User user);
     boolean authUser(String username, String password);
+    List<User> getUserByRole(String role);
+    void addOrUpdateTeacher(User u);
+    boolean deleteTeacher(int id);
+    
 }
 

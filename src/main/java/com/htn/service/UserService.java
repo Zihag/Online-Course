@@ -21,6 +21,7 @@ public interface UserService extends UserDetailsService {
     User getUserByUsername(String username);
     User addUser(Map<String, String> params, MultipartFile avatar);
     boolean authUser(String username, String password);
-
+    User getUserById(int id);
+    boolean deleteTeacher(int id);
 }
 

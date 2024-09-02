@@ -104,7 +104,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
     private Collection<Rating> ratingCollection;
-    @OneToMany(mappedBy = "teacherId")
+    @OneToMany(mappedBy = "teacher")
     @JsonIgnore
     private Collection<Course> courseCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentId")

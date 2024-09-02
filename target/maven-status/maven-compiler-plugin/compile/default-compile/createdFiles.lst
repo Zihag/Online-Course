@@ -6,6 +6,7 @@ com\htn\repository\implement\UserRepositoryImpl.class
 com\htn\service\UserService.class
 com\htn\service\DocumentService.class
 com\htn\filters\RestAuthenticationEntryPoint.class
+com\htn\formatter\UserFormatter.class
 com\htn\repository\implement\DocumentRepositoryImpl.class
 com\htn\filters\JwtAuthenticationTokenFilter.class
 com\htn\repository\implement\CourseRepositoryImpl.class
@@ -16,6 +17,7 @@ com\htn\repository\StatsRepository.class
 com\htn\pojo\Submission_.class
 com\htn\controllers\CourseDTO.class
 com\htn\repository\implement\CategoryRepositoryImpl.class
+com\htn\controllers\DocumentController.class
 com\htn\service\impl\CategoryServiceImpl.class
 com\htn\configs\SpringSecurityConfig.class
 com\htn\pojo\Exercise_.class

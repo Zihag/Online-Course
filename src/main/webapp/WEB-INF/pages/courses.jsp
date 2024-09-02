@@ -56,6 +56,24 @@
         <label for="sel1" class="form-label">Select list (select one):</label>
     </div>
 
+    <div class="form-floating mb-3">
+        <form:select class="form-select" id="teacher" path="teacher">
+            <c:forEach items="${teachers}" var="t">
+                <c:choose>
+                    <c:when test="${t.id == course.teacher.id}">           
+                        <option value="${t.id}" selected>${t.fullName}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${t.id}">${t.fullName}</option>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </form:select>
+        <label for="teacher" class="form-label">Select Teacher:</label>
+    </div>
+
+    <form:hidden path="teacher" />
+
     <div class="mb-3 mt-3">
         <form:hidden path="id" />
         <form:hidden path="coverImg" />
@@ -66,7 +84,6 @@
             </c:choose>
         </button>
     </div>
-        
 </form:form>
 
 <script>

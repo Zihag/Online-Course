@@ -32,6 +32,7 @@
                     <th>Course</th>
                     <th>Price</th>
                     <th>Description</th>
+                    <th>Teacher</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -45,10 +46,12 @@
                         <td>${c.title}</td>
                         <td>${c.price}</td>
                         <td>${c.description}</td>
+                        <td>${c.teacher.fullName}</td>
                         <td>
                             <c:url value="/api/courses/${c.id}" var="apiDel"/>
                             <a href="<c:url value="/courses/${c.id}"/>" class="btn btn-success">Update</a>
                             <button class="btn btn-danger" onclick="delCourse('${apiDel}', ${c.id})">Delete</button>
+                            <a href="<c:url value="/courses/assign-teacher/${c.id}"/>" class="btn btn-primary">Add Teacher</a>
                         </td>
                     </tr>
                 </c:forEach>

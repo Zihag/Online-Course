@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -48,6 +51,16 @@ public class TeacherController {
             return "add-teacher";
         }
         this.userService.addOrUpdateTeacher(u);
+        return "redirect:/teachers";
+    }
+
+    @PostMapping("/delete")
+    public String deleteTeacher(@RequestParam("teacherId") int teacherId, Model model, RedirectAttributes redirectAttributes) {
+        boolean delete = this.userService.deleteTeacher(teacherId);
+        if (!delete) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Can't delete this teacher. It may be associated with one or more courses.");
+            return "redirect:/teachers";
+        }
         return "redirect:/teachers";
     }
 }

@@ -4,6 +4,7 @@
  */
 package com.htn.repository.implement;
 
+import com.htn.pojo.Course;
 import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -26,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class UserRepositoryImpl implements UserRepository {
-    
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -63,9 +65,31 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean deleteTeacher(int id) {
-//        Session session = this.factory.getObject().getCurrentSession();
-//        Course c = this.getCourseById(id);
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session session = this.factory.getObject().getCurrentSession();
+        User teacher = this.getUserById(id);
+        
+        boolean teacherRole = false;
+        if("ROLE_TEACHER".equals(teacher.getRole())) {
+            teacherRole = true;
+        }
+        
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+        Root<Course> root = cq.from(Course.class);
+        cq.select(root).where(cb.equal(root.get("teacher"), teacher));
+        List<Course> courses = session.createQuery(cq).getResultList();
+
+        if(!courses.isEmpty()) {
+            return false;
+        }
+        
+        try {
+            session.delete(teacher);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -89,11 +113,11 @@ public class UserRepositoryImpl implements UserRepository {
         s.save(user);
         return user;
     }
-    
+
     @Override
     public boolean authUser(String username, String password) {
         User u = this.getUserByUsername(username);
-        
+
         return this.passwordEncoder.matches(password, u.getPassword());
     }
 }
