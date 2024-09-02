@@ -40,11 +40,16 @@
                     <td><a href="${d.url}" target="_blank">${d.url}</a></td>
                     <td>${d.courseId.title}</td>
                     <td>
-                        <a href="<c:url value="/documents/${d.id}/edit"/>" class="btn btn-success btn-sm">Edit</a>
-                        <a href="<c:url value="/documents/${d.id}/delete"/>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                        <c:url value="/api/documents/${d.id}" var="apiDel"/>
+                        <a href="<c:url value="/documents/${d.id}/update"/>" class="btn btn-success btn-sm">Edit</a>
+
+                        <button class="btn btn-danger" onclick="delCourse('${apiDel}', ${d.id})">Delete</button>                    
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+<script src="<c:url value="/js/main.js"/>">
+
+</script>

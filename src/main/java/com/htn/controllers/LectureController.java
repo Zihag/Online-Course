@@ -52,24 +52,33 @@ public class LectureController {
     public String showAddLectureForm(Model model){
         model.addAttribute("courses", this.courseService.getAllCourses());
         model.addAttribute("lecture", new Lecture());
-        return "add-lecture";
+        return "add-or-update-lecture";
     }
     
     @PostMapping("/add-lecture")
-    public String add(Model model, @ModelAttribute(value = "lecture") @Valid Lecture l,
-            BindingResult rs) {
+    public String addLecture(Model model, @ModelAttribute(value = "lecture") @Valid Lecture l, BindingResult rs) {
         if (rs.hasErrors()) {
-            return "add-lecture";
+            return "add-or-update-lecture";
         }
         this.lectureService.addOrUpdate(l);
         return "redirect:/lectures";
     }
     
-    @GetMapping("/lectures/{id}/edit")
-    public String update(Model model, @PathVariable(value = "id") int id) {
-        model.addAttribute("lecture", this.lectureService.getLectureById(id));
+    @GetMapping("/{id}/update")
+    public String updateLecture(Model model, @PathVariable(value = "id") int id) {
+        Lecture lecture = lectureService.getLectureById(id);
+        model.addAttribute("lecture", lecture);
         model.addAttribute("courses", this.courseService.getAllCourses());
-        return "courses";
+        return "add-or-update-lecture";
+    }
+    
+    @PostMapping("/update")
+    public String updateLecture (Model model, @ModelAttribute(value = "lecture") @Valid Lecture l, BindingResult rs) {
+        if (rs.hasErrors()) {
+            return "add-or-update-lecture";
+        }
+        this.lectureService.addOrUpdate(l);
+        return "redirect:/lectures";
     }
     
 }

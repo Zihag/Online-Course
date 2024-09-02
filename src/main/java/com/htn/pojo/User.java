@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -119,6 +120,16 @@ public class User implements Serializable {
 
     public User(Integer id) {
         this.id = id;
+    }
+    
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 
     public User(Integer id, String userName, String password, String role, String email) {
@@ -236,11 +247,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.htn.pojo.User[ id=" + id + " ]";
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Date(); // Gán thời gian hiện tại
     }
 
     public String getPassword() {

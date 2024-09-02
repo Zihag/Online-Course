@@ -47,8 +47,10 @@
                     <td><a href="${l.url}" target="_blank">${l.url}</a></td>
                     <td>${l.courseId.title}</td>
                     <td>
-                        <a href="<c:url value="/lectures/${l.id}/edit"/>" class="btn btn-success btn-sm">Edit</a>
-                        <a href="<c:url value="/lectures/${l.id}/delete"/>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this lecture?')">Delete</a>
+                        <c:url value="/api/lectures/${l.id}" var="apiDel"/>
+                        <a href="<c:url value="/lectures/${l.id}/update"/>" class="btn btn-success btn-sm">Edit</a>
+
+                        <button class="btn btn-danger" onclick="delCourse('${apiDel}', ${d.id})">Delete</button>                    
                     </td>
                 </tr>
             </c:forEach>

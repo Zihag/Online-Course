@@ -42,19 +42,20 @@
         <put-attribute name="content" 
                        value="/WEB-INF/pages/documents.jsp" />
     </definition>
-    <definition name="add-document" extends="baseLayout">
+
+    <definition name="add-or-update-document" extends="baseLayout">
         <put-attribute name="title" value="Add new document" />
         <put-attribute name="content" 
-                       value="/WEB-INF/pages/add-document.jsp" />
+                       value="/WEB-INF/pages/add-or-update-document.jsp" />
     </definition>
     <definition name="lectures" extends="baseLayout">
         <put-attribute name="title" value="Lecture Manager" />
         <put-attribute name="content" 
                        value="/WEB-INF/pages/lectures.jsp" />
     </definition>
-    <definition name="add-lecture" extends="baseLayout">
+    <definition name="add-or-update-lecture" extends="baseLayout">
         <put-attribute name="title" value="Add new lecture" />
         <put-attribute name="content" 
-                       value="/WEB-INF/pages/add-lecture.jsp" />
+                       value="/WEB-INF/pages/add-or-update-lecture.jsp" />
     </definition>
 </tiles-definitions>

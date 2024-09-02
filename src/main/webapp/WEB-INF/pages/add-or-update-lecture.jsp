@@ -8,7 +8,14 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<c:url value="/add-lecture" var="action"/>
+<c:choose>
+    <c:when test="${lecture.id == null}">
+        <c:url value="/lectures/add-lecture" var="action"/>
+    </c:when>
+    <c:otherwise>
+        <c:url value="/lectures/update" var="action"/>
+    </c:otherwise>
+</c:choose>
 <form:form method="post" action="${action}" modelAttribute="lecture" >
     <form:errors path="*" element="div" cssClass="alert alert-danger"/> 
     <form:hidden path="id"/>
@@ -28,13 +35,10 @@
         <form:input type="text" class="form-control" path="url" id="url" placeholder="Enter url" />
         <label for="url">Url</label>
         <form:errors path="url" element="div" cssClass="text-danger"/>
-
     </div>
 
-   
-
     <div class="form-floating">
-        <form:select class="form-select" id="sel1" name="sellist" path="courseId">
+        <form:select class="form-select" id="courseId" name="courseId" path="courseId">
             <c:forEach items="${courses}" var="c">
                 <c:choose>
                     <c:when test="${c.id == lecture.courseId.id}">           
@@ -46,7 +50,7 @@
                 </c:choose>
             </c:forEach>
         </form:select>
-        <label for="sel1" class="form-label">Select list (select one):</label>
+        <label for="courseId" class="form-label">Select list (select one):</label>
     </div>
 
     <div class="mb-3 mt-3">

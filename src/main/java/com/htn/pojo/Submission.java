@@ -5,6 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -70,6 +73,16 @@ public class Submission implements Serializable {
         this.id = id;
         this.content = content;
     }
+    
+//    @PrePersist
+//    protected void onCreate() {
+//        createdAt = new Date();
+//    }
+//
+//    @PreUpdate
+//    protected void onUpdate() {
+//        updatedAt = new Date();
+//    }
 
     public Integer getId() {
         return id;
