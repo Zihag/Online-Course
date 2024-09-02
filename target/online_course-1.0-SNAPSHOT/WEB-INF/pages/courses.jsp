@@ -7,8 +7,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<h1>Add new course</h1>
-
+<c:choose>
+    <c:when test="${course.id != null}"><h1>Update course</h1></c:when>
+    <c:otherwise><h1>Add new course</h1></c:otherwise>
+</c:choose>
+    
 <c:url value="/courses" var="action"/>
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="course" >
     <form:errors path="*" element="div" cssClass="alert alert-danger"/> 
