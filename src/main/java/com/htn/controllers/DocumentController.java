@@ -19,9 +19,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -31,13 +33,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/documents")
 @ControllerAdvice
 public class DocumentController {
+
     @Autowired
     private DocumentService docuService;
     @Autowired
     private CourseService courseSer;
-    
+
     @GetMapping
-    public String getAllDocuments(Model model, 
+    public String getAllDocuments(Model model,
             @RequestParam(required = false) Integer courseId) {
         Map<String, String> params = new HashMap<>();
         if (courseId != null) {
@@ -47,19 +50,38 @@ public class DocumentController {
         model.addAttribute("courses", this.courseSer.getAllCourses());
         return "documents";
     }
-    
-    @GetMapping("/add-teacher")
+
+    @GetMapping("/add-document")
     public String showAddDocumentForm(Model model) {
         model.addAttribute("document", new Document());
-        return "add-document";
+        model.addAttribute("courses", this.courseSer.getAllCourses());
+        return "add-or-update-document";
     }
-    
-    @PostMapping("/add-document")
-    public String addDocument(Model m, @ModelAttribute(value = "document") @Valid Document d, BindingResult rs) {
+
+    @GetMapping("/{id}/update")
+    public String updateDocument(Model model, @PathVariable(value = "id") int id) {
+        Document document = docuService.getDocumentById(id);
+        model.addAttribute("document", document);
+        model.addAttribute("courses", this.courseSer.getAllCourses());
+        return "add-or-update-document";
+    }
+
+    @PostMapping("/update")
+    public String updateDocument(Model m, @ModelAttribute(value = "document") @Valid Document d, BindingResult rs) {
         if (rs.hasErrors()) {
-            return "documents";
+            return "add-or-update-document";
         }
         this.docuService.addOrUpdate(d);
         return "redirect:/documents";
     }
+
+    @PostMapping("/add-document")
+    public String addDocument(Model m, @ModelAttribute(value = "document") @Valid Document d, BindingResult rs) {
+        if (rs.hasErrors()) {
+            return "add-or-update-document";
+        }
+        this.docuService.addOrUpdate(d);
+        return "redirect:/documents";
+    }
+
 }

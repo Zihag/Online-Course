@@ -31,6 +31,7 @@ C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\HibernateConfi
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\DispatcherServletInit.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\UserRepositoryImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\JwtSecurityConfig.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\APIDocumentController.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\CourseController.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\SpringSecurityConfig.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\ApiCourseController.java
@@ -48,5 +49,6 @@ C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\pojo\Document.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\StatsRepositoryImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\pojo\Lecture.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\LectureService.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\formatter\CourseFormatter.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\pojo\User.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\impl\UserServiceImpl.java
