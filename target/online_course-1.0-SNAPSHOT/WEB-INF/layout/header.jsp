@@ -9,6 +9,7 @@
 <c:url value="/" var ="action" />
 <c:url value="/teachers" var="teacherAction"/>
 <c:url value="/documents" var="documentAction"/>
+<c:url value="/exercises" var="exerciseAction"/>
 <c:url value="/lectures" var="lectureAction"/>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.05);">
     <div class="container-fluid">
@@ -29,9 +30,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-bold" href="${documentAction}">Document Manage</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link fw-bold" href="${lectureAction}">Lecture Manage</a>
+                    <a class="nav-link fw-bold" href="${exerciseAction}">Exercise Manage</a>
                 </li>
                 <div class="dropdown">
                     <div class="dropdown">

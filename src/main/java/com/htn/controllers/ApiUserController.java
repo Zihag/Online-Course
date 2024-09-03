@@ -34,6 +34,7 @@ public class ApiUserController {
     private JwtService jwtService;
     @Autowired
     private UserService userService;
+    
 
     @PostMapping("/login")
     @CrossOrigin
@@ -47,11 +48,11 @@ public class ApiUserController {
         return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping(path = "/users",
+    @PostMapping(path = "/users/register",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public ResponseEntity<User> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
+    public ResponseEntity<User> register(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
         User user = this.userService.addUser(params, avatar);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
@@ -60,7 +61,6 @@ public class ApiUserController {
     @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> details(Principal user) {
         User u = this.userService.getUserByUsername(user.getName());
-
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 

@@ -42,11 +42,20 @@
         <put-attribute name="content" 
                        value="/WEB-INF/pages/documents.jsp" />
     </definition>
-
     <definition name="add-or-update-document" extends="baseLayout">
-        <put-attribute name="title" value="Add new document" />
+        <put-attribute name="title" value="Add new or update document" />
         <put-attribute name="content" 
                        value="/WEB-INF/pages/add-or-update-document.jsp" />
+    </definition>
+    <definition name="exercises" extends="baseLayout">
+        <put-attribute name="title" value="Exercise Manager" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/pages/exercises.jsp" />
+    </definition>
+    <definition name="add-or-update-exercise" extends="baseLayout">
+        <put-attribute name="title" value="Add new or update exercise" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/pages/add-or-update-exercise.jsp" />
     </definition>
     <definition name="lectures" extends="baseLayout">
         <put-attribute name="title" value="Lecture Manager" />

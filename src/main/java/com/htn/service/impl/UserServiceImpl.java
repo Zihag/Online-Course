@@ -130,4 +130,9 @@ public class UserServiceImpl implements UserService {
         return this.userRepo.deleteTeacher(id);
     }
 
+    @Override
+    public User register(Map<String, String> params, MultipartFile avatar) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
