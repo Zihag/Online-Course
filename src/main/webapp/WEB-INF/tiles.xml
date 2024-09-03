@@ -57,4 +57,14 @@
         <put-attribute name="content" 
                        value="/WEB-INF/pages/add-or-update-exercise.jsp" />
     </definition>
+    <definition name="lectures" extends="baseLayout">
+        <put-attribute name="title" value="Lecture Manager" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/pages/lectures.jsp" />
+    </definition>
+    <definition name="add-or-update-lecture" extends="baseLayout">
+        <put-attribute name="title" value="Add new lecture" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/pages/add-or-update-lecture.jsp" />
+    </definition>
 </tiles-definitions>

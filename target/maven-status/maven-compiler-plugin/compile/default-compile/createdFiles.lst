@@ -4,6 +4,7 @@ com\htn\pojo\Enrollment.class
 com\htn\configs\HibernateConfig.class
 com\htn\repository\implement\ExerciseRepositoryImpl.class
 com\htn\repository\implement\UserRepositoryImpl.class
+com\htn\controllers\LectureController.class
 com\htn\service\UserService.class
 com\htn\service\DocumentService.class
 com\htn\filters\RestAuthenticationEntryPoint.class
@@ -11,7 +12,6 @@ com\htn\formatter\UserFormatter.class
 com\htn\repository\implement\DocumentRepositoryImpl.class
 com\htn\filters\JwtAuthenticationTokenFilter.class
 com\htn\repository\implement\CourseRepositoryImpl.class
-com\htn\service\impl\UserServiceImpl.class
 com\htn\controllers\IndexController.class
 com\htn\controllers\TeacherController.class
 com\htn\repository\StatsRepository.class
@@ -24,9 +24,11 @@ com\htn\controllers\ExerciseController.class
 com\htn\service\impl\CategoryServiceImpl.class
 com\htn\configs\SpringSecurityConfig.class
 com\htn\pojo\Exercise_.class
+com\htn\service\impl\LectureServiceImpl.class
 com\htn\components\JwtService.class
 com\htn\pojo\User.class
 com\htn\pojo\Exercise.class
+com\htn\repository\implement\LectureRepositoryImpl.class
 com\htn\pojo\Submission.class
 com\htn\pojo\User_.class
 com\htn\service\impl\DocumentServiceImpl.class
@@ -40,6 +42,7 @@ com\htn\repository\UserRepository.class
 com\htn\service\impl\ExerciseServiceImpl.class
 com\htn\pojo\Rating_.class
 com\htn\filters\CustomAccessDeniedHandler.class
+com\htn\service\LectureService.class
 com\htn\controllers\ApiCourseController.class
 com\htn\service\CategoryService.class
 com\htn\service\impl\CourseServiceImpl.class
@@ -55,6 +58,7 @@ com\htn\repository\CourseRepository.class
 com\htn\repository\CategoryRepository.class
 com\htn\service\ExerciseService.class
 com\htn\pojo\Rating.class
+com\htn\repository\LectureRepository.class
 com\htn\configs\SecurityAppContextConfigs.class
 com\htn\configs\TilesConfigs.class
 com\htn\repository\DocumentRepository.class
