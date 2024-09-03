@@ -1,9 +1,12 @@
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\CourseDTO.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\DocumentController.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\ExerciseController.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\impl\LectureServiceImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\components\JwtService.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\TeacherController.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\ExerciseRepository.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\filters\JwtAuthenticationTokenFilter.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\ExerciseRepositoryImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\UserRepository.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\filters\RestAuthenticationEntryPoint.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\LectureRepositoryImpl.java
@@ -28,6 +31,7 @@ C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\StatsReposi
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\CourseRepository.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\impl\CategoryServiceImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\HibernateConfig.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\ExerciseService.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\DispatcherServletInit.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\UserRepositoryImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\JwtSecurityConfig.java
@@ -44,6 +48,7 @@ C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\ApiUserCon
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\DocumentService.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\pojo\Rating.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\LectureRepository.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\impl\ExerciseServiceImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\filters\CustomAccessDeniedHandler.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\pojo\Document.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\StatsRepositoryImpl.java

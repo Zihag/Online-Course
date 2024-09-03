@@ -5,6 +5,8 @@
 package com.htn.repository.implement;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.Enrollment;
+import com.htn.pojo.Submission;
 import com.htn.pojo.User;
 import com.htn.repository.CourseRepository;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
@@ -39,12 +42,11 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Autowired
     private Environment env;
 
-    
     @Override
     public List<Course> getAllCourses() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("From Course");
-        
+
         return q.getResultList();
     }
 
@@ -120,29 +122,6 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     }
 
-//    @Override
-//    public void addOrUpdate(Product p) {
-//        Session s = this.factory.getObject().getCurrentSession();
-//        if (p.getId() != null) {
-//            s.update(p);
-//        } else {
-//            s.save(p);
-//        }
-//    }
-//
-//    @Override
-//    public Product getProductById(int id) {
-//        Session s = this.factory.getObject().getCurrentSession();
-//        return s.get(Product.class, id);
-//
-//    }
-//
-//    @Override
-//    public void deleteProduct(int id) {
-//        Session s = this.factory.getObject().getCurrentSession();
-//        Product p = this.getProductById(id);
-//        s.delete(p);
-//    }
     @Override
     public int countCourse() {
         Session s = this.factory.getObject().getCurrentSession();
@@ -172,13 +151,44 @@ public class CourseRepositoryImpl implements CourseRepository {
     public boolean deleteCouse(int id) {
         Session session = this.factory.getObject().getCurrentSession();
         Course c = this.getCourseById(id);
-        try {
-            session.delete(c);
-            return true;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
+
+        if (countEnrollmentByCourseId(id) > 0) {
             return false;
+        } else {
+            try {
+                session.delete(c);
+                return true;
+            } catch (HibernateException ex) {
+                ex.printStackTrace();
+                return false;
+            }
         }
+    }
+
+    @Override
+    public int countEnrollmentByCourseId(int courseId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Long> query = builder.createQuery(Long.class);
+        Root<Enrollment> root = query.from(Enrollment.class);
+        query.select(builder.count(root))
+                .where(builder.equal(root.get("courseId"), courseId));
+        Long count = session.createQuery(query).getSingleResult();
+        return count.intValue();
+
+//Dưới đây là code join với bảng User để kiểm tra, nhưng có vẻ không cần thiết, 
+//vì mặc định ở bảng Enrollment đã fix phải có user_id và course_id rồi, nên dùng cái trên =))).
+//        Session session = this.factory.getObject().getCurrentSession();
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery<Long> query = builder.createQuery(Long.class);
+//        Root<Enrollment> root = query.from(Enrollment.class);
+//
+//        Join<Object, Object> userJoin = root.join("user");
+//        query.select(builder.count(root))
+//                .where(builder.equal(userJoin.get("course").get("id"), courseId));
+//        
+//        Long count = session.createQuery(query).getSingleResult();
+//        return count.intValue();
     }
 
     @Override
@@ -191,5 +201,17 @@ public class CourseRepositoryImpl implements CourseRepository {
             c.setTeacher(teacher);
             session.update(c);
         }
+    }
+    
+    @Override
+    public List<Course> getCoursesByUserId(int studentId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        
+        CriteriaQuery<Course> q = b.createQuery(Course.class);
+        Root<Enrollment> root = q.from(Enrollment.class);
+        Join<Enrollment, Course> courseJoin = root.join("courseId");
+        q.select(courseJoin).where(b.equal(root.get("studentId").get("id"), studentId));
+        return session.createQuery(q).getResultList();
     }
 }

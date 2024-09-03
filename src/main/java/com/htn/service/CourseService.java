@@ -23,4 +23,6 @@ public interface CourseService {
     CourseDTO getCourseDTOById(Integer courseId);
     void assignTeacherToCourse(Course course, User teacher);
     List<Course> getAllCourses();
+    int countEnrollmentByCourseId(int id);
+    List<Course> getAllCoursesByUserId(int studentId);
 }

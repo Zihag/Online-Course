@@ -5,6 +5,7 @@
 package com.htn.repository;
 
 import com.htn.pojo.Course;
+import com.htn.pojo.Enrollment;
 import com.htn.pojo.User;
 import java.util.List;
 import java.util.Map;
@@ -22,5 +23,8 @@ public interface CourseRepository {
     Course getCourseById(int id);
     boolean deleteCouse(int id);
     void assignTeacherToCourse(Course course, User teacher);
-
+    int countEnrollmentByCourseId(int id);
+    
+    //Cho enrollment
+    List<Course> getCoursesByUserId(int studentId);
 }

@@ -1,10 +1,11 @@
-function delCourse(path, id){
-    fetch(path,{
-        method:"delete"
-    }).then(res =>{
-        if(res.status===204)
+function delCourse(path, id) {
+    fetch(path, {
+        method: "delete"
+    }).then(res => {
+        if (res.status === 204)
             location.reload();
-        else
-            alert("Something wrong");
+        else {
+            alert("Course have student (in enrollment)");
+        }
     })
 }

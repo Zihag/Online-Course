@@ -49,4 +49,9 @@ public class ApiCourseController {
     public ResponseEntity<CourseDTO> details(@PathVariable(value="courseId") Integer id) {
         return new ResponseEntity<>(this.courseService.getCourseDTOById(id), HttpStatus.OK);
     }
+    
+    @GetMapping("/courses/enrolled-courses/{userId}")
+    public ResponseEntity<List<Course>> listCoursesByUserId(@PathVariable(value="userId") Integer id) {
+        return new ResponseEntity<>(this.courseService.getAllCoursesByUserId(id), HttpStatus.OK);
+    }
 }

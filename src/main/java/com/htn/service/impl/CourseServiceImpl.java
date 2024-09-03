@@ -107,4 +107,14 @@ public class CourseServiceImpl implements CourseService {
         return this.courseRepo.getAllCourses();
     }
 
+    @Override
+    public int countEnrollmentByCourseId(int id) {
+        return this.courseRepo.countEnrollmentByCourseId(id);
+    }
+
+    @Override
+    public List<Course> getAllCoursesByUserId(int studentId) {
+        return this.courseRepo.getCoursesByUserId(studentId);
+    }
+
 }
