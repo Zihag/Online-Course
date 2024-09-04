@@ -4,10 +4,37 @@
  */
 package com.htn.service.impl;
 
+import com.htn.pojo.Rating;
+import com.htn.repository.RatingRepository;
+import com.htn.service.RatingService;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Admin
  */
-public class RatingServiceImpl {
-    
+@Service
+public class RatingServiceImpl implements RatingService {
+
+    @Autowired
+    private RatingRepository ratingRepository;
+
+    @Override
+    public List<Rating> getAllRating() {
+        return this.ratingRepository.getAllRating();
+    }
+
+    @Override
+    public Rating getRatingByCourseId(int id) {
+        return this.ratingRepository.getRatingByCourseId(id);
+    }
+
+    @Override
+    public void addRating(Rating rating) {
+        this.ratingRepository.addRating(rating);
+    }
+
 }

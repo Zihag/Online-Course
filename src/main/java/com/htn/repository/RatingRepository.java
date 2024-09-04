@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Admin
  */
 public interface RatingRepository {
-    List<Rating> getAllRating(Map<String, String> params);
-    Rating getRatingById(int id);
+    List<Rating> getAllRating();
+    Rating getRatingByCourseId(int id);
     void addRating(Rating rating);
 }

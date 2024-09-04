@@ -88,7 +88,7 @@ public class Course implements Serializable {
     @Fetch(FetchMode.SUBSELECT)
     private Collection<Document> documentCollection;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId",fetch = FetchType.EAGER)
     @JsonIgnore
     private Collection<Rating> ratingCollection;
     

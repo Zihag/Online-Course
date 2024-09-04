@@ -4,6 +4,8 @@
  */
 package com.htn.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -59,10 +61,12 @@ public class Rating implements Serializable {
     private Date createdDate;
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Course courseId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
+    
 
     public Rating() {
     }

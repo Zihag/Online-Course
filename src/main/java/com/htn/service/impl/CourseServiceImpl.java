@@ -10,6 +10,7 @@ import com.htn.controllers.CourseDTO;
 import com.htn.pojo.Course;
 import com.htn.pojo.Document;
 import com.htn.pojo.Lecture;
+import com.htn.pojo.Rating;
 import com.htn.pojo.User;
 import com.htn.repository.CourseRepository;
 import com.htn.service.CourseService;
@@ -83,6 +84,7 @@ public class CourseServiceImpl implements CourseService {
             // Chuyển Collection<Lecture> sang List<Lecture>
             List<Document> documents = course.getDocumentCollection().stream().collect(Collectors.toList());
             List<Lecture> lectures = course.getLectureCollection().stream().collect(Collectors.toList());
+            List<Rating> ratings = course.getRatingCollection().stream().collect(Collectors.toList());
 
             // Tạo CourseDTO và set các giá trị cần thiết
             CourseDTO courseDTO = new CourseDTO();
@@ -93,6 +95,7 @@ public class CourseServiceImpl implements CourseService {
             courseDTO.setCoverImg(course.getCoverImg());
             courseDTO.setDocuments(documents);
             courseDTO.setLectures(lectures);
+            courseDTO.setRatings(ratings);
 
             return courseDTO;
     }

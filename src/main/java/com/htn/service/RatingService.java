@@ -4,10 +4,16 @@
  */
 package com.htn.service;
 
+import com.htn.pojo.Rating;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author Admin
  */
 public interface RatingService {
-    
+    List<Rating> getAllRating();
+    Rating getRatingByCourseId(int id);
+    void addRating(Rating rating);
 }
