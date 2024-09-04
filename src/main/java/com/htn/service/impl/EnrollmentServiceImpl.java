@@ -34,5 +34,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
         return allEnroll;
     }
+
+    @Override
+    public boolean isEnrolled(int userId, int courseId) {
+        Enrollment enrollment = enrollRepo.findEnrollmentByUserIdandCourseId(userId, courseId);
+        return enrollment != null;
+    }
+
+    
     
 }

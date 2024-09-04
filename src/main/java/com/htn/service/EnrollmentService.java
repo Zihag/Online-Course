@@ -4,6 +4,7 @@
  */
 package com.htn.service;
 
+import com.htn.pojo.Enrollment;
 import java.util.List;
 
 /**
@@ -11,5 +12,9 @@ import java.util.List;
  * @author DELL
  */
 public interface EnrollmentService {
+
     boolean enrollToCourses(int userId, List<Integer> courseIds);
+
+    boolean isEnrolled(int userId, int courseId);
+
 }
