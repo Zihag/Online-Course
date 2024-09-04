@@ -4,17 +4,16 @@
  */
 package com.htn.service;
 
-import com.htn.pojo.Enrollment;
+import com.htn.pojo.Rating;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
- * @author DELL
+ * @author Admin
  */
-public interface EnrollmentService {
-
-    boolean enrollToCourses(int userId, List<Integer> courseIds);
-
-    boolean isEnrolled(int userId, int courseId);
-
+public interface RatingService {
+    List<Rating> getAllRating();
+    Rating getRatingByCourseId(int id);
+    void addRating(Rating rating);
 }

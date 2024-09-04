@@ -6,6 +6,7 @@ package com.htn.controllers;
 
 import com.htn.pojo.Document;
 import com.htn.pojo.Lecture;
+import com.htn.pojo.Rating;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class CourseDTO {
     private String coverImg;
     private List<Lecture> lectures;
     private List<Document> documents;
+    private List<Rating> ratings;
 
     // Getters and Setters
     public Integer getId() {
@@ -78,6 +80,13 @@ public class CourseDTO {
 
     public void setDocuments(List<Document> documents) {
         this.documents = documents;
+    }
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
 
