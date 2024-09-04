@@ -18,4 +18,5 @@ public interface ExerciseRepository {
     boolean deleteExercise(int id);
     void addOrUpdate(Exercise ex);
     List<Exercise> getAllExercises();
+    Exercise addExercise(Exercise ex);
 }

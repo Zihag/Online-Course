@@ -98,4 +98,11 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public Exercise addExercise(Exercise ex) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(ex);
+        return ex;
+    }
+
 }

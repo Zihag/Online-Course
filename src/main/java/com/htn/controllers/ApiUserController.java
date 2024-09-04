@@ -53,7 +53,7 @@ public class ApiUserController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public ResponseEntity<User> register(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-        User user = this.userService.addUser(params, avatar);
+        User user = this.userService.register(params, avatar);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

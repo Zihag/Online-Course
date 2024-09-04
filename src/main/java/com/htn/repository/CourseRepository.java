@@ -27,4 +27,5 @@ public interface CourseRepository {
     
     //Cho enrollment
     List<Course> getCoursesByUserId(int studentId);
+    List<Course> getCoursesByTeacherId(int teacherId);
 }

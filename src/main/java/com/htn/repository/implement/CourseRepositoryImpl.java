@@ -202,16 +202,31 @@ public class CourseRepositoryImpl implements CourseRepository {
             session.update(c);
         }
     }
-    
+
     @Override
     public List<Course> getCoursesByUserId(int studentId) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        
+
         CriteriaQuery<Course> q = b.createQuery(Course.class);
         Root<Enrollment> root = q.from(Enrollment.class);
         Join<Enrollment, Course> courseJoin = root.join("courseId");
         q.select(courseJoin).where(b.equal(root.get("studentId").get("id"), studentId));
         return session.createQuery(q).getResultList();
     }
+
+    @Override
+    public List<Course> getCoursesByTeacherId(int teacherId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Course> q = b.createQuery(Course.class);
+        Root<Course> root = q.from(Course.class);
+        Predicate p = b.equal(root.get("teacher").get("id"), teacherId);
+        q.where(p);
+
+        q.select(root).distinct(true);
+
+        return session.createQuery(q).getResultList();
+    }
+
 }

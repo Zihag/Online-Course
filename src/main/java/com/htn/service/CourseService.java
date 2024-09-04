@@ -25,4 +25,5 @@ public interface CourseService {
     List<Course> getAllCourses();
     int countEnrollmentByCourseId(int id);
     List<Course> getAllCoursesByUserId(int studentId);
+    List<Course> getAllCoursesByTeacherId(int teacherId);
 }

@@ -40,8 +40,6 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private Cloudinary cloudinary;
 
-    
-    
     @Override
     public List<Course> getCourses(Map<String, String> params) {
         return this.courseRepo.getCourses(params);
@@ -70,31 +68,31 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourseById(int id) {
         return this.courseRepo.getCourseById(id);
     }
+
     @Override
     public boolean deleteCouse(int id) {
         return this.courseRepo.deleteCouse(id);
     }
 
-    
     @Override
     public CourseDTO getCourseDTOById(Integer courseId) {
         Course course = courseRepo.getCourseById(courseId);
 
-            // Chuyển Collection<Lecture> sang List<Lecture>
-            List<Document> documents = course.getDocumentCollection().stream().collect(Collectors.toList());
-            List<Lecture> lectures = course.getLectureCollection().stream().collect(Collectors.toList());
+        // Chuyển Collection<Lecture> sang List<Lecture>
+        List<Document> documents = course.getDocumentCollection().stream().collect(Collectors.toList());
+        List<Lecture> lectures = course.getLectureCollection().stream().collect(Collectors.toList());
 
-            // Tạo CourseDTO và set các giá trị cần thiết
-            CourseDTO courseDTO = new CourseDTO();
-            courseDTO.setId(course.getId());
-            courseDTO.setTitle(course.getTitle());
-            courseDTO.setDescription(course.getDescription());
-            courseDTO.setPrice(course.getPrice());
-            courseDTO.setCoverImg(course.getCoverImg());
-            courseDTO.setDocuments(documents);
-            courseDTO.setLectures(lectures);
+        // Tạo CourseDTO và set các giá trị cần thiết
+        CourseDTO courseDTO = new CourseDTO();
+        courseDTO.setId(course.getId());
+        courseDTO.setTitle(course.getTitle());
+        courseDTO.setDescription(course.getDescription());
+        courseDTO.setPrice(course.getPrice());
+        courseDTO.setCoverImg(course.getCoverImg());
+        courseDTO.setDocuments(documents);
+        courseDTO.setLectures(lectures);
 
-            return courseDTO;
+        return courseDTO;
     }
 
     @Override
@@ -115,6 +113,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> getAllCoursesByUserId(int studentId) {
         return this.courseRepo.getCoursesByUserId(studentId);
+    }
+
+    @Override
+    public List<Course> getAllCoursesByTeacherId(int teacherId) {
+        return this.courseRepo.getCoursesByTeacherId(teacherId);
     }
 
 }
