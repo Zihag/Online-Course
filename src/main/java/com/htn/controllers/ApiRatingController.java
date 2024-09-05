@@ -4,6 +4,7 @@
  */
 package com.htn.controllers;
 
+import com.htn.dto.RatingRequest;
 import com.htn.pojo.Rating;
 import com.htn.service.RatingService;
 import java.util.Map;
@@ -36,13 +37,10 @@ public class ApiRatingController {
     
     
     
-   @PostMapping(path = "/add",
-            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    @CrossOrigin
-    public ResponseEntity<Rating> addRating(@RequestParam Map<String, String> params) {
-        Rating rating = this.ratingService.addRating(params);
-        return new ResponseEntity<>(rating, HttpStatus.CREATED);
+   @PostMapping("/add")
+    public ResponseEntity<Rating> addRating(@RequestBody RatingRequest ratingRequest) {
+        Rating newRating = ratingService.addRating(ratingRequest);
+        return new ResponseEntity<>(newRating, HttpStatus.CREATED);
     }
     
 }

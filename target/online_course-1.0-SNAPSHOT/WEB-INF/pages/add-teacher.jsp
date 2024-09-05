@@ -9,6 +9,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <h1>Add new teacher</h1>
 
+
 <c:url value="/teachers/add-teacher/" var="action"/>
 <form:form method="post" action="${action}" modelAttribute="user">
     <form:errors path="*" element="div" cssClass="alert alert-danger"/>
