@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
-    
+
     @Autowired
     private EnrollmentRepository enrollRepo;
 
@@ -45,10 +45,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     public Integer enrollProgress(int userId, int courseId) {
         Enrollment enrollment = enrollRepo.findEnrollmentByUserIdandCourseId(userId, courseId);
-        BigDecimal progress =  enrollment.getProgress();
+        BigDecimal progress = enrollment.getProgress();
+        if (progress == null) {
+            return 0;
+        }
+
+        // Chuyển đổi progress từ BigDecimal sang int
         return progress.intValue();
     }
 
-    
-    
 }

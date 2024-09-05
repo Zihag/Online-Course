@@ -4,6 +4,7 @@
  */
 package com.htn.service;
 
+import com.htn.dto.RatingRequest;
 import com.htn.pojo.Rating;
 import java.util.List;
 import java.util.Map;
@@ -15,5 +16,5 @@ import java.util.Map;
 public interface RatingService {
     List<Rating> getAllRating();
     Rating getRatingByCourseId(int id);
-    public Rating addRating(Map<String, String> params);
+    Rating addRating(RatingRequest ratingRequest);
 }

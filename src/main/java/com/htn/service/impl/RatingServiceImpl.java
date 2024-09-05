@@ -4,6 +4,7 @@
  */
 package com.htn.service.impl;
 
+import com.htn.dto.RatingRequest;
 import com.htn.pojo.Course;
 import com.htn.pojo.Rating;
 import com.htn.pojo.User;
@@ -45,21 +46,19 @@ public class RatingServiceImpl implements RatingService {
 
 
     @Override
-    public Rating addRating(Map<String, String> params) {
-        int courseId = Integer.parseInt(params.get("courseId"));
-        int userId = Integer.parseInt(params.get("userId"));
-        String feedback = params.get("feedback");
-        int score = Integer.parseInt(params.get("score"));
-        
-        Course course = courseRepository.getCourseById(courseId);
-        User user = userRepository.getUserById(userId);
-        
+    public Rating addRating(RatingRequest ratingRequest) {
+        // Tìm khóa học và người dùng theo ID
+        Course course = courseRepository.getCourseById(ratingRequest.getCourseId());
+        User user = userRepository.getUserById(ratingRequest.getUserId());
+
+        // Tạo đối tượng Rating mới
         Rating rating = new Rating();
         rating.setCourseId(course);
         rating.setUserId(user);
-        rating.setFeedback(feedback);
-        rating.setScore(score);
+        rating.setFeedback(ratingRequest.getFeedback());
+        rating.setScore(ratingRequest.getScore());
 
+        // Lưu vào cơ sở dữ liệu
         return ratingRepository.addRating(rating);
     }
 
