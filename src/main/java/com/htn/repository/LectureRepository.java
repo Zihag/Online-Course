@@ -14,7 +14,7 @@ import java.util.Map;
 public interface LectureRepository {
     List<Lecture> getLectures(Map<String, String> params);
     Lecture getLectureById(int id);
-    boolean deleteLecture(int id);
+    void deleteLecture(Lecture l);
     void addOrUpdate(Lecture lecture);
     List<Lecture> getAllLectures();
 }

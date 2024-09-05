@@ -45,12 +45,16 @@
                     <td>${e.courseId.title}</td>
                     <td>
                         <a href="<c:url value="/exercises/${e.id}"/>" class="btn btn-success btn-sm">Edit</a>
+                        <a href="<c:url value="/api/exercises/${e.id}/delete" var="apiDel"/>" class="btn btn-danger fas fa-trash" onclick="deleteExercise('${apiDel}', ${e.id})"></a>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+
+<script src="<c:url value="/js/main.js"/>">
+</script>
 
 
 

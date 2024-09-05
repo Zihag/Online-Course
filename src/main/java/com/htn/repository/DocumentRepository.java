@@ -15,7 +15,7 @@ import java.util.Map;
 public interface DocumentRepository {
     List<Document> getDocuments(Map<String, String> params);
     Document getDocumentById(int id);
-    boolean deleteDocument(int id);
+    void deleteDocument(Document d);
     void addOrUpdate(Document docu);
     List<Document> getAllDocuments();
 }

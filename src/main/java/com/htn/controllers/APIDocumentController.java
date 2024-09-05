@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  *
@@ -25,9 +26,12 @@ public class APIDocumentController {
     @Autowired
     public DocumentService d;
     
-    @DeleteMapping("/documents/{id}")
+    @DeleteMapping("/documents/{id}/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDocument(@PathVariable(value = "id") int id) {
-        this.d.deleteDocument(id);
+        boolean delete = this.d.deleteDocumentByDocumentId(id);
+        if(!delete) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Document Id is null");
+        }
     }
 }

@@ -67,22 +67,22 @@ public class UserRepositoryImpl implements UserRepository {
     public boolean deleteTeacher(int id) {
         Session session = this.factory.getObject().getCurrentSession();
         User teacher = this.getUserById(id);
-        
+
         boolean teacherRole = false;
-        if("ROLE_TEACHER".equals(teacher.getRole())) {
+        if ("ROLE_TEACHER".equals(teacher.getRole())) {
             teacherRole = true;
         }
-        
+
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Course> cq = cb.createQuery(Course.class);
         Root<Course> root = cq.from(Course.class);
         cq.select(root).where(cb.equal(root.get("teacher"), teacher));
         List<Course> courses = session.createQuery(cq).getResultList();
 
-        if(!courses.isEmpty()) {
+        if (!courses.isEmpty()) {
             return false;
         }
-        
+
         try {
             session.delete(teacher);
             return true;
@@ -119,5 +119,19 @@ public class UserRepositoryImpl implements UserRepository {
         User u = this.getUserByUsername(username);
 
         return this.passwordEncoder.matches(password, u.getPassword());
+    }
+
+    @Override
+    public void addOrUpdate(User u) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (u.getId() == null) {
+            if (u.getPassword() != null && !u.getPassword().isEmpty()) {
+                String encodedPassword = passwordEncoder.encode(u.getPassword());
+                u.setPassword(encodedPassword);
+            }
+            s.save(u);
+        } else {
+            s.update(u);
+        }
     }
 }

@@ -34,15 +34,14 @@
                     <td>${teacher.email}</td>
                     <td>
                         <!-- Form to delete teacher -->
-                        <form action="<c:url value="/teachers/delete"/>" method="post" style="display:inline;">
-                            <input type="hidden" name="teacherId" value="${teacher.id}" />
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                        <c:url value="/api/users/${teacher.id}/delete" var="apiDel"/>
+                        <button class="btn btn-danger" onclick="deleteTeacher('${apiDel}', ${d.id})">Delete</button>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+<script src="<c:url value="/js/main.js"/>">
+
+</script>

@@ -72,22 +72,15 @@ public class LectureRepositoryImpl implements LectureRepository {
     }
 
     @Override
-    public boolean deleteLecture(int id) {
+    public void deleteLecture(Lecture l) {
         Session s = this.factory.getObject().getCurrentSession();
-        Lecture l = this.getLectureById(id);
-        try {
-            s.delete(l);
-            return true;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+        s.delete(l);
     }
 
     @Override
     public void addOrUpdate(Lecture lecture) {
         Session s = this.factory.getObject().getCurrentSession();
-        if(lecture.getId() != null) {
+        if (lecture.getId() != null) {
             s.update(lecture);
         } else {
             s.save(lecture);

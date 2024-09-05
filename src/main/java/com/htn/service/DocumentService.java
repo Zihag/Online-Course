@@ -15,6 +15,6 @@ import java.util.Map;
 public interface DocumentService {
     List<Document> getDocuments(Map<String, String> params);
     Document getDocumentById(int id);
-    boolean deleteDocument(int id);
+    boolean deleteDocumentByDocumentId(int id);
     void addOrUpdate(Document docu);
 }

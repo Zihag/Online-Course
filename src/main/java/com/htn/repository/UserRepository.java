@@ -4,6 +4,7 @@
  */
 package com.htn.repository;
 
+import com.htn.pojo.Course;
 import com.htn.pojo.User;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public interface UserRepository {
     User getUserById(int id);
     User getUserByUsername(String username);
     User addUser(User user);
+    void addOrUpdate(User u);
     boolean authUser(String username, String password);
     List<User> getUserByRole(String role);
     void addOrUpdateTeacher(User u);

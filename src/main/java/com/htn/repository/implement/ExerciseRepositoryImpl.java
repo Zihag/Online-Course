@@ -71,16 +71,9 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     }
 
     @Override
-    public boolean deleteExercise(int id) {
+    public void deleteExercise(Exercise ex) {
         Session s = this.factory.getObject().getCurrentSession();
-        Exercise d = this.getExerciseById(id);
-        try {
-            s.delete(d);
-            return true;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+        s.delete(ex);
     }
 
     @Override
@@ -96,6 +89,13 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     @Override
     public List<Exercise> getAllExercises() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Exercise addExercise(Exercise ex) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(ex);
+        return ex;
     }
 
 }

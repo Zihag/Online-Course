@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -33,8 +34,13 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public boolean deleteDocument(int id) {
-        return this.docuRepo.deleteDocument(id);
+    public boolean deleteDocumentByDocumentId(int id) {
+        Document d = this.docuRepo.getDocumentById(id);
+        if(d == null) {
+            return false;
+        }
+        this.docuRepo.deleteDocument(d);
+        return true;
     }
     
     @Override

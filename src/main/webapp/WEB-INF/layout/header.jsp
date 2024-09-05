@@ -28,10 +28,16 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bold" href="${teacherAction}">Teacher Manage</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold" href="${documentAction}">Document Manage</a>
-                    <a class="nav-link fw-bold" href="${lectureAction}">Lecture Manage</a>
-                    <a class="nav-link fw-bold" href="${exerciseAction}">Exercise Manage</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold text-primary" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Resource Manage
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="${documentAction}">Document Manage</a></li>
+                        <li><a class="dropdown-item" href="${lectureAction}">Lecture Manage</a></li>
+                        <li><a class="dropdown-item" href="${exerciseAction}">Exercise Manage</a></li>
+                    </ul>
                 </li>
                 <div class="dropdown">
                     <div class="dropdown">

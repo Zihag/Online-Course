@@ -1,11 +1,14 @@
 com\htn\controllers\ApiUserController.class
 com\htn\pojo\EnrollmentTemp.class
+com\htn\dto\ExerciseDTO.class
 com\htn\pojo\Document.class
 com\htn\pojo\Enrollment.class
 com\htn\repository\implement\RatingRepositoryImpl.class
+com\htn\repository\SubmissionRepository.class
 com\htn\configs\HibernateConfig.class
 com\htn\repository\implement\ExerciseRepositoryImpl.class
 com\htn\repository\implement\UserRepositoryImpl.class
+com\htn\service\SubmissionService.class
 com\htn\controllers\LectureController.class
 com\htn\service\UserService.class
 com\htn\service\DocumentService.class
@@ -18,6 +21,7 @@ com\htn\repository\implement\CourseRepositoryImpl.class
 com\htn\service\impl\UserServiceImpl.class
 com\htn\controllers\IndexController.class
 com\htn\controllers\TeacherController.class
+com\htn\repository\implement\SubmissionRepositoryImpl.class
 com\htn\repository\StatsRepository.class
 com\htn\controllers\APIDocumentController.class
 com\htn\controllers\ApiRatingController.class
@@ -38,6 +42,7 @@ com\htn\service\impl\RatingServiceImpl.class
 com\htn\service\EnrollmentService.class
 com\htn\pojo\User.class
 com\htn\service\impl\EnrollmentServiceImpl.class
+com\htn\service\impl\SubmissionServiceImpl.class
 com\htn\repository\implement\EnrollmentRepositoryImpl.class
 com\htn\service\RatingService.class
 com\htn\pojo\Exercise.class
@@ -51,12 +56,15 @@ com\htn\controllers\ApiCategoryController.class
 com\htn\formatter\CourseFormatter.class
 com\htn\pojo\Document_.class
 com\htn\configs\WebAppContextConfig.class
+com\htn\dto\SubmissionDTO.class
+com\htn\controllers\ApiExerciseController.class
 com\htn\pojo\Category.class
 com\htn\repository\UserRepository.class
 com\htn\service\impl\ExerciseServiceImpl.class
 com\htn\pojo\Rating_.class
 com\htn\filters\CustomAccessDeniedHandler.class
 com\htn\service\LectureService.class
+com\htn\controllers\ApiSubmissionController.class
 com\htn\controllers\ApiCourseController.class
 com\htn\service\CategoryService.class
 com\htn\service\impl\CourseServiceImpl.class
@@ -78,5 +86,6 @@ com\htn\configs\TilesConfigs.class
 com\htn\repository\DocumentRepository.class
 com\htn\controllers\CourseController.class
 com\htn\configs\DispatcherServletInit.class
+com\htn\controllers\ApiLectureController.class
 com\htn\pojo\Category_.class
 com\htn\repository\EnrollmentRepository.class

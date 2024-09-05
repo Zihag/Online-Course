@@ -47,14 +47,17 @@
                     <td><a href="${l.url}" target="_blank">${l.url}</a></td>
                     <td>${l.courseId.title}</td>
                     <td>
-                        <c:url value="/api/lectures/${l.id}" var="apiDel"/>
+                        <c:url value="/api/lectures/${l.id}/delete" var="apiDel"/>
                         <a href="<c:url value="/lectures/${l.id}/update"/>" class="btn btn-success btn-sm">Edit</a>
 
-                        <button class="btn btn-danger" onclick="delCourse('${apiDel}', ${d.id})">Delete</button>                    
+                        <button class="btn btn-danger" onclick="deleteLecture('${apiDel}', ${d.id})">Delete</button>                    
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
+<script src="<c:url value="/js/main.js"/>">
+
+</script>
 
