@@ -1,21 +1,14 @@
-<%-- 
-    Document   : courses
-    Created on : Aug 16, 2024, 11:47:13 PM
-    Author     : Admin
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:choose>
     <c:when test="${course.id != null}"><h1>Update course</h1></c:when>
     <c:otherwise><h1>Add new course</h1></c:otherwise>
 </c:choose>
-    
+
 <c:url value="/courses" var="action"/>
-<form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="course" >
+<form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="course" onsubmit="formatPriceBeforeSubmit()">
     <form:errors path="*" element="div" cssClass="alert alert-danger"/> 
     <form:hidden path="id"/>
     <div class="form-floating mb-3 mt-3">
@@ -27,14 +20,13 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="price" id="price" placeholder="Enter price" oninput="formatPrice(this)" />
         <label for="price" >Price</label>
-        <form:errors path="description" element="div" cssClass="text-danger"/>
-
+        <form:errors path="price" element="div" cssClass="text-danger"/>
     </div>
+
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="description" id="description" placeholder="Enter description" />
         <label for="description">Description</label>
         <form:errors path="description" element="div" cssClass="text-danger"/>
-
     </div>
 
     <div class=" mb-3 mt-3">
@@ -93,10 +85,20 @@
 </form:form>
 
 <script>
-//    function formatPrice(input) {
-//        let value = input.value.replace(/[^0-9.]/g, '');
-//        let parts = value.split('.');
-//        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-//        input.value = parts.join('.');
-//    }
+    function formatPrice(input) {
+        // Format price input
+        let value = input.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except dot
+        let parts = value.split('.');
+        if (parts[1]) {
+            parts[1] = parts[1].substring(0, 2); // Limit decimal places to 2
+        }
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add comma as thousand separator
+        input.value = parts.join('.');
+    }
+
+    function formatPriceBeforeSubmit() {
+        let priceInput = document.getElementById('price');
+        let value = priceInput.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except dot
+        priceInput.value = value;
+    }
 </script>
