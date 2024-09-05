@@ -51,10 +51,10 @@ public class RatingRepositoryImpl implements RatingRepository {
     }
 
     @Override
-    public void addRating(Rating rating) {
+    public Rating addRating(Rating rating) {
         Session s = this.factory.getObject().getCurrentSession();
-        if(rating.getId() == null)
-            s.save(rating);
+        s.save(rating);
+        return rating;
     }
 
 }

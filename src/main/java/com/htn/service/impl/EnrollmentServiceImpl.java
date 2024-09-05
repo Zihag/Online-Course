@@ -7,6 +7,7 @@ package com.htn.service.impl;
 import com.htn.pojo.Enrollment;
 import com.htn.repository.EnrollmentRepository;
 import com.htn.service.EnrollmentService;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public boolean isEnrolled(int userId, int courseId) {
         Enrollment enrollment = enrollRepo.findEnrollmentByUserIdandCourseId(userId, courseId);
         return enrollment != null;
+    }
+
+    @Override
+    public Integer enrollProgress(int userId, int courseId) {
+        Enrollment enrollment = enrollRepo.findEnrollmentByUserIdandCourseId(userId, courseId);
+        BigDecimal progress =  enrollment.getProgress();
+        return progress.intValue();
     }
 
     

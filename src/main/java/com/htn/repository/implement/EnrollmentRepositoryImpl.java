@@ -71,4 +71,6 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
         return session.createQuery(q).uniqueResult();
     }
 
+    
+
 }
