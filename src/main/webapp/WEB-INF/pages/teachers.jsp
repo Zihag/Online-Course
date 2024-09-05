@@ -5,11 +5,11 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container mt-3">
     <h1 class="display-4 text-center mb-4">Teacher Manage</h1>
     <div class="mb-3">
-        <a href="<c:url value="/teachers/add-teacher"/>" class="btn btn-info">Add Teacher</a>
+        <a href="<c:url value="/teachers/add-or-update-teacher"/>" class="btn btn-info">Add Teacher</a>
     </div>
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-danger">${errorMessage}</div>
@@ -36,6 +36,7 @@
                         <!-- Form to delete teacher -->
                         <c:url value="/api/users/${teacher.id}/delete" var="apiDel"/>
                         <button class="btn btn-danger" onclick="deleteTeacher('${apiDel}', ${d.id})">Delete</button>
+                        <a href="<c:url value="/teachers/add-or-update-teacher/${teacher.id}"/>" class="btn btn-success">Update</a>
                     </td>
                 </tr>
             </c:forEach>

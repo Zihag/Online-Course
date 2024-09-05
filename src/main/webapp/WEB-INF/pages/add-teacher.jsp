@@ -5,13 +5,16 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<h1>Add new teacher</h1>
 
-
-<c:url value="/teachers/add-teacher/" var="action"/>
+<c:choose>
+    <c:when test="${teacher.id != null}"><h1>UPDATE TEACHER</h1></c:when>
+    <c:otherwise><h1>ADD NEW TEACHER</h1></c:otherwise>
+</c:choose>
+<c:url value="/teachers/add-or-update-teacher/" var="action"/>
 <form:form method="post" action="${action}" modelAttribute="user">
+    <form:hidden path="id"/>
     <form:errors path="*" element="div" cssClass="alert alert-danger"/>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="fullName" id="fullName" placeholder="Enter teachers' full name" />
