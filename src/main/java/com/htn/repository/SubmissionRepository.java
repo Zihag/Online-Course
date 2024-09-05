@@ -5,6 +5,7 @@
 package com.htn.repository;
 
 import com.htn.pojo.Submission;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.htn.pojo.Submission;
 public interface SubmissionRepository {
     Submission findSubmissionById(int id);
     void updateSubmission(Submission sub);
+    List<Submission> findSubmissionByExerciseId(int exerciseId);
 }

@@ -148,21 +148,10 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public boolean deleteCouse(int id) {
+    public void deleteCouse(int id) {
         Session session = this.factory.getObject().getCurrentSession();
         Course c = this.getCourseById(id);
-
-        if (countEnrollmentByCourseId(id) > 0) {
-            return false;
-        } else {
-            try {
-                session.delete(c);
-                return true;
-            } catch (HibernateException ex) {
-                ex.printStackTrace();
-                return false;
-            }
-        }
+        session.delete(c);
     }
 
     @Override

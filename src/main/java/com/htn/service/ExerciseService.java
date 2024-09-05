@@ -16,7 +16,7 @@ import java.util.Map;
 public interface ExerciseService {
     List<Exercise> getExercises(Map<String, String> params);
     Exercise getExerciseById(int id);
-    boolean deleteExercise(int id);
+    boolean deleteExerciseById(int id);
     void addOrUpdate(Exercise ex);
     List<ExerciseDTO> getExercisesByCourseId(int courseId);
     public Exercise addExercise(ExerciseDTO exerciseDTO);

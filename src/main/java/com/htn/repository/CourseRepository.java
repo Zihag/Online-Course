@@ -21,7 +21,7 @@ public interface CourseRepository {
     
     void addOrUpdateCourse(Course c);
     Course getCourseById(int id);
-    boolean deleteCouse(int id);
+    void deleteCouse(int id);
     void assignTeacherToCourse(Course course, User teacher);
     int countEnrollmentByCourseId(int id);
     

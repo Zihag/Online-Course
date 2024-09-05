@@ -82,16 +82,9 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     }
 
     @Override
-    public boolean deleteDocument(int id) {
+    public void deleteDocument(Document d) {
         Session s = this.factory.getObject().getCurrentSession();
-        Document d = this.getDocumentById(id);
-        try {
-            s.delete(d);
-            return true;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+        s.delete(d);
     }
 
     @Override

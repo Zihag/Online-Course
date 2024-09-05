@@ -51,13 +51,6 @@
                             <a href="<c:url value="/courses/${c.id}"/>" class="btn btn-success">Update</a>
                             <c:url value="/api/courses/${c.id}" var="apiDel"/>
                             <a href="#" class="btn btn-danger" onclick="delCourse('${apiDel}', ${c.id})">Delete</a>
-                            <form action="<c:url value="/courses/delete"/>" method="post" style="display:inline;">
-                                <input type="hidden" name="courseId" value="${c.id}" />
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete" 
-                                        onclick="return confirm('Are you sure you want to delete this teacher?');">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
                             <a href="<c:url value="/courses/assign-teacher/${c.id}"/>" class="btn btn-primary">Assign teacher</a>
                         </td>
                     </tr>

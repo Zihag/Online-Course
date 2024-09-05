@@ -16,6 +16,6 @@ import java.util.Map;
 public interface LectureService {
     List<Lecture> getLectures(Map<String, String> params);
     Lecture getLectureById(int id);
-    boolean deleteLecture(int id);
+    boolean deleteLectureById(int id);
     void addOrUpdate(Lecture lecture);
 }

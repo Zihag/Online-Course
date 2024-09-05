@@ -9,7 +9,9 @@ import com.htn.dto.SubmissionDTO;
 import com.htn.pojo.Course;
 import com.htn.pojo.Exercise;
 import com.htn.repository.ExerciseRepository;
+import com.htn.repository.SubmissionRepository;
 import com.htn.service.ExerciseService;
+import com.htn.service.SubmissionService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,9 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Autowired
     private ExerciseRepository exerciseRepo;
 
+    @Autowired
+    private SubmissionService submissionService;
+
     @Override
     public List<Exercise> getExercises(Map<String, String> params) {
         return this.exerciseRepo.getExercises(params);
@@ -39,8 +44,19 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public boolean deleteExercise(int id) {
-        return this.exerciseRepo.deleteExercise(id);
+    public boolean deleteExerciseById(int id) {
+        Exercise ex = this.exerciseRepo.getExerciseById(id);
+        if (ex == null) {
+            return false;
+        } else {
+            boolean isSubmission = this.submissionService.existSubmissionByExerciseId(id);
+            if (isSubmission) {
+                return false;
+            } else {
+                this.exerciseRepo.deleteExercise(ex);
+                return true;
+            }
+        }
     }
 
     @Override
@@ -87,7 +103,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         exercise.setTitle(exerciseDTO.getTitle());
         exercise.setDescription(exerciseDTO.getDescription());
         exercise.setCourseId(new Course(exerciseDTO.getCourseId()));
-        
+
         return this.exerciseRepo.addExercise(exercise);
     }
 

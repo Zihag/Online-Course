@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,7 +73,18 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public boolean deleteCouse(int id) {
-        return this.courseRepo.deleteCouse(id);
+        Course c = this.courseRepo.getCourseById(id);
+        if (countEnrollmentByCourseId(id) > 0) {
+            return false;
+        } else {
+            try {
+                this.courseRepo.deleteCouse(id);
+                return true;
+            } catch (HibernateException ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        }
     }
 
     @Override

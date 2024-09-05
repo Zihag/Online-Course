@@ -71,16 +71,9 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     }
 
     @Override
-    public boolean deleteExercise(int id) {
+    public void deleteExercise(Exercise ex) {
         Session s = this.factory.getObject().getCurrentSession();
-        Exercise d = this.getExerciseById(id);
-        try {
-            s.delete(d);
-            return true;
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+        s.delete(ex);
     }
 
     @Override

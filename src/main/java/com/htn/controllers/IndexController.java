@@ -47,6 +47,7 @@ public class IndexController {
     private Environment env;
     @Autowired
     private UserService userService;
+    
 
     @ModelAttribute
     public void commonAttr(Model model) {
@@ -57,7 +58,6 @@ public class IndexController {
     public String index(Model model, @RequestParam Map<String, String> params) {
 
         model.addAttribute("courses", this.courseService.getCourses(params));
-
         int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
         int count = this.courseService.countCourse();
         model.addAttribute("counter", Math.ceil(count * 1.0 / pageSize));

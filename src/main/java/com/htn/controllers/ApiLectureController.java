@@ -4,7 +4,7 @@
  */
 package com.htn.controllers;
 
-import com.htn.service.DocumentService;
+import com.htn.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,18 +20,19 @@ import org.springframework.web.server.ResponseStatusException;
  * @author DELL
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/lectures")
 @CrossOrigin
-public class APIDocumentController {
+public class ApiLectureController {
     @Autowired
-    public DocumentService d;
+    private LectureService ls;
     
-    @DeleteMapping("/documents/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDocument(@PathVariable(value = "id") int id) {
-        boolean delete = this.d.deleteDocumentByDocumentId(id);
-        if(!delete) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Document Id is null");
+    public void delete(@PathVariable(value = "id") int id) {
+        boolean deleted = this.ls.deleteLectureById(id);
+
+        if (!deleted) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Something wrong!");
         }
     }
 }

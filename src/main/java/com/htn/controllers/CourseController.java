@@ -40,7 +40,7 @@ public class CourseController {
     @GetMapping("/courses")
     public String list(Model model) {
         model.addAttribute("course", new Course());
-
+        model.addAttribute("teachers", this.userService.getAllTeachers());
         return "courses";
     }
 

@@ -15,7 +15,7 @@ import java.util.Map;
 public interface ExerciseRepository {
     List<Exercise> getExercises(Map<String, String> params);
     Exercise getExerciseById(int id);
-    boolean deleteExercise(int id);
+    void deleteExercise(Exercise ex);
     void addOrUpdate(Exercise ex);
     List<Exercise> getAllExercises();
     Exercise addExercise(Exercise ex);

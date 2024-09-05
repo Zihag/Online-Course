@@ -61,6 +61,7 @@
 
     <div class="form-floating mb-3">
         <form:select class="form-select" id="teacher" path="teacher">
+            <option value="">None</option>
             <c:forEach items="${teachers}" var="t">
                 <c:choose>
                     <c:when test="${t.id == course.teacher.id}">           
@@ -90,10 +91,10 @@
 </form:form>
 
 <script>
-    function formatPrice(input) {
-        let value = input.value.replace(/[^0-9.]/g, '');
-        let parts = value.split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        input.value = parts.join('.');
-    }
+//    function formatPrice(input) {
+//        let value = input.value.replace(/[^0-9.]/g, '');
+//        let parts = value.split('.');
+//        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+//        input.value = parts.join('.');
+//    }
 </script>

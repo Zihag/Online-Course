@@ -8,6 +8,7 @@ import com.htn.pojo.Submission;
 import com.htn.repository.SubmissionRepository;
 import com.htn.repository.implement.SubmissionRepositoryImpl;
 import com.htn.service.SubmissionService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,16 @@ public class SubmissionServiceImpl implements SubmissionService {
         submission.setScore(score);
         submission.setFeedback(feedback);
         this.subRepository.updateSubmission(submission);
+    }
+
+    @Override
+    public boolean existSubmissionByExerciseId(int exerciseId) {
+        List<Submission> submissionList = this.subRepository.findSubmissionByExerciseId(exerciseId);
+        if(submissionList.isEmpty()) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

@@ -10,4 +10,5 @@ package com.htn.service;
  */
 public interface SubmissionService {
     void updateSubmission(int id, int score, String feedback);
+    boolean existSubmissionByExerciseId(int exerciseId);
 }

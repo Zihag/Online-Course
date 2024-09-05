@@ -17,13 +17,14 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service
-public class LectureServiceImpl implements LectureService{
+public class LectureServiceImpl implements LectureService {
+
     @Autowired
     private LectureRepository lectureRepository;
 
     @Override
     public List<Lecture> getLectures(Map<String, String> params) {
-                return this.lectureRepository.getLectures(params);
+        return this.lectureRepository.getLectures(params);
 
     }
 
@@ -33,14 +34,20 @@ public class LectureServiceImpl implements LectureService{
     }
 
     @Override
-    public boolean deleteLecture(int id) {
-        return this.lectureRepository.deleteLecture(id);
+    public boolean deleteLectureById(int id) {
+        Lecture l = this.lectureRepository.getLectureById(id);
+        if (l == null) {
+            return false;
+        } else {
+            this.lectureRepository.deleteLecture(l);
+            return true;
+        }
+
     }
 
     @Override
     public void addOrUpdate(Lecture lecture) {
         this.lectureRepository.addOrUpdate(lecture);
     }
-
 
 }
