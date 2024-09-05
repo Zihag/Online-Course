@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,17 +39,17 @@ public class TeacherController {
         return "teachers";
     }
 
-    @GetMapping("/add-teacher")
+    @GetMapping("/add-or-update-teacher")
     public String showAddTeacherForm(Model model) {
         model.addAttribute("user", new User());
         return "add-teacher";
     }
 
-    @PostMapping("add-teacher")
+    @PostMapping("add-or-update-teacher")
     public String addTeachers(Model model, @ModelAttribute(value = "user") @Valid User u,
             BindingResult rs) {
         if (rs.hasErrors()) {
-            return "add-teacher";
+            return "add-or-update-teacher";
         }
         this.userService.addOrUpdateTeacher(u);
         return "redirect:/teachers";
@@ -62,5 +63,11 @@ public class TeacherController {
             return "redirect:/teachers";
         }
         return "redirect:/teachers";
+    }
+    
+    @GetMapping("/add-or-update-teacher/{id}")
+    public String update(Model model, @PathVariable(value = "id") int id) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "add-teacher";
     }
 }
