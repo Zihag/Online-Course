@@ -15,5 +15,5 @@ import java.util.Map;
 public interface RatingRepository {
     List<Rating> getAllRating();
     Rating getRatingByCourseId(int id);
-    void addRating(Rating rating);
+    Rating addRating(Rating rating);
 }

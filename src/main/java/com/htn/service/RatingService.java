@@ -15,5 +15,5 @@ import java.util.Map;
 public interface RatingService {
     List<Rating> getAllRating();
     Rating getRatingByCourseId(int id);
-    void addRating(Rating rating);
+    public Rating addRating(Map<String, String> params);
 }

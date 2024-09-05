@@ -16,5 +16,7 @@ public interface EnrollmentService {
     boolean enrollToCourses(int userId, List<Integer> courseIds);
 
     boolean isEnrolled(int userId, int courseId);
+    
+    Integer enrollProgress(int userId, int courseId);
 
 }

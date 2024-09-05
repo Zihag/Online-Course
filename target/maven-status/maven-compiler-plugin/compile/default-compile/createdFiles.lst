@@ -1,9 +1,15 @@
 com\htn\controllers\ApiUserController.class
 com\htn\pojo\EnrollmentTemp.class
+<<<<<<< HEAD
 com\htn\dto\ExerciseDTO.class
 com\htn\pojo\Document.class
 com\htn\pojo\Enrollment.class
 com\htn\repository\SubmissionRepository.class
+=======
+com\htn\pojo\Document.class
+com\htn\pojo\Enrollment.class
+com\htn\repository\implement\RatingRepositoryImpl.class
+>>>>>>> 599719ce95487ee87a66dcdcd8f595f2bd148462
 com\htn\configs\HibernateConfig.class
 com\htn\repository\implement\ExerciseRepositoryImpl.class
 com\htn\repository\implement\UserRepositoryImpl.class
@@ -13,6 +19,7 @@ com\htn\service\UserService.class
 com\htn\service\DocumentService.class
 com\htn\filters\RestAuthenticationEntryPoint.class
 com\htn\formatter\UserFormatter.class
+com\htn\controllers\RatingController.class
 com\htn\repository\implement\DocumentRepositoryImpl.class
 com\htn\filters\JwtAuthenticationTokenFilter.class
 com\htn\repository\implement\CourseRepositoryImpl.class
@@ -22,9 +29,12 @@ com\htn\controllers\TeacherController.class
 com\htn\repository\implement\SubmissionRepositoryImpl.class
 com\htn\repository\StatsRepository.class
 com\htn\controllers\APIDocumentController.class
+com\htn\controllers\ApiRatingController.class
 com\htn\pojo\Submission_.class
 com\htn\controllers\CourseDTO.class
+com\htn\pojo\UserSummary.class
 com\htn\repository\implement\CategoryRepositoryImpl.class
+com\htn\repository\RatingRepository.class
 com\htn\controllers\DocumentController.class
 com\htn\controllers\ExerciseController.class
 com\htn\service\impl\CategoryServiceImpl.class
@@ -33,11 +43,20 @@ com\htn\pojo\Exercise_.class
 com\htn\service\impl\LectureServiceImpl.class
 com\htn\controllers\ApiEnrollmentController.class
 com\htn\components\JwtService.class
+<<<<<<< HEAD
 com\htn\service\EnrollmentService.class
 com\htn\pojo\User.class
 com\htn\service\impl\EnrollmentServiceImpl.class
 com\htn\service\impl\SubmissionServiceImpl.class
 com\htn\repository\implement\EnrollmentRepositoryImpl.class
+=======
+com\htn\service\impl\RatingServiceImpl.class
+com\htn\service\EnrollmentService.class
+com\htn\pojo\User.class
+com\htn\service\impl\EnrollmentServiceImpl.class
+com\htn\repository\implement\EnrollmentRepositoryImpl.class
+com\htn\service\RatingService.class
+>>>>>>> 599719ce95487ee87a66dcdcd8f595f2bd148462
 com\htn\pojo\Exercise.class
 com\htn\repository\implement\LectureRepositoryImpl.class
 com\htn\pojo\Submission.class

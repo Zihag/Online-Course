@@ -26,9 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/enrollments")
 public class ApiEnrollmentController {
+
     @Autowired
     private EnrollmentService enrollmentService;
-    
+
     @PostMapping("/enroll-multiple")
     public ResponseEntity<String> enrollMultipleCourses(@RequestBody EnrollmentRequest enrollmentRequest) {
         boolean success = enrollmentService.enrollToCourses(enrollmentRequest.getUserId(), enrollmentRequest.getCourseIds());
@@ -38,11 +39,20 @@ public class ApiEnrollmentController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Enrollment failed for some courses.");
         }
     }
-    
+
     @GetMapping("/enroll-check")
-    public ResponseEntity<Boolean> checkEnrollment(@RequestParam int userId, @RequestParam int courseId){
+    public ResponseEntity<Boolean> checkEnrollment(@RequestParam int userId, @RequestParam int courseId) {
         boolean isEnrolled = enrollmentService.isEnrolled(userId, courseId);
         return new ResponseEntity<>(isEnrolled, HttpStatus.OK);
     }
-    
+
+    @GetMapping("/enroll-progress")
+    public ResponseEntity<Integer> checkEnrollmentProgress(@RequestParam int userId, @RequestParam int courseId) {
+        Integer progress = enrollmentService.enrollProgress(userId, courseId);
+        if (progress != null) {
+            return new ResponseEntity<>(progress, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
