@@ -18,5 +18,7 @@ public interface EnrollmentService {
     boolean isEnrolled(int userId, int courseId);
     
     Integer enrollProgress(int userId, int courseId);
-
+    
+    double calculateProgress(int studentId, int courseId);
+    void updateProgress(int studentId, int courseId);
 }

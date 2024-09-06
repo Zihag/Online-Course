@@ -6,8 +6,11 @@ package com.htn.service.impl;
 
 import com.htn.pojo.Enrollment;
 import com.htn.repository.EnrollmentRepository;
+import com.htn.repository.ExerciseRepository;
+import com.htn.repository.SubmissionRepository;
 import com.htn.service.EnrollmentService;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,12 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Autowired
     private EnrollmentRepository enrollRepo;
+
+    @Autowired
+    private ExerciseRepository exerciseRepositoryImpl;
+
+    @Autowired
+    private SubmissionRepository submissionRepositoryImpl;
 
     @Override
     public boolean enrollToCourses(int userId, List<Integer> courseIds) {
@@ -52,6 +61,32 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         // Chuyển đổi progress từ BigDecimal sang int
         return progress.intValue();
+    }
+
+    @Override
+    public double calculateProgress(int studentId, int courseId) {
+        int totalExercises = exerciseRepositoryImpl.countExercisesByCourseId(courseId);
+
+        int completedExercises = submissionRepositoryImpl.countSubmissionsByStudentIdAndCourseId(studentId, courseId);
+
+        if (totalExercises == 0) {
+            return 0.0;
+        }
+
+        return (double) completedExercises / totalExercises * 100;
+    }
+
+    @Override
+    public void updateProgress(int studentId, int courseId) {
+        double progress = calculateProgress(studentId, courseId);
+
+        Enrollment enrollment = enrollRepo.findEnrollmentByUserIdandCourseId(studentId, courseId);
+        if (enrollment != null) {
+            BigDecimal progressDecimal = BigDecimal.valueOf(progress).setScale(2, RoundingMode.HALF_UP); // 2 chữ số thập phân
+
+            enrollment.setProgress(progressDecimal);
+            enrollRepo.updateEnrollment(enrollment);
+        }
     }
 
 }

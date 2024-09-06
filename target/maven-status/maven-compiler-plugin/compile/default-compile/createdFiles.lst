@@ -37,6 +37,7 @@ com\htn\configs\SpringSecurityConfig.class
 com\htn\pojo\Exercise_.class
 com\htn\service\impl\LectureServiceImpl.class
 com\htn\controllers\ApiEnrollmentController.class
+com\htn\dto\RatingRequest.class
 com\htn\components\JwtService.class
 com\htn\service\impl\RatingServiceImpl.class
 com\htn\service\EnrollmentService.class

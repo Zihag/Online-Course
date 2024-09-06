@@ -14,4 +14,5 @@ import java.util.List;
 public interface EnrollmentRepository {
     void enrollToCourse(int userId, int courseId);
     Enrollment findEnrollmentByUserIdandCourseId(int userId, int courseId);
+    void updateEnrollment(Enrollment e);
 }

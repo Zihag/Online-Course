@@ -4,6 +4,8 @@
  */
 package com.htn.service;
 
+import com.htn.dto.SubmissionDTO;
+
 /**
  *
  * @author DELL
@@ -11,4 +13,5 @@ package com.htn.service;
 public interface SubmissionService {
     void updateSubmission(int id, int score, String feedback);
     boolean existSubmissionByExerciseId(int exerciseId);
+    void addSubmissionWithExerciseIdStudentId(SubmissionDTO submissionDTO);
 }
