@@ -50,6 +50,7 @@ C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\service\ExerciseServic
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\DispatcherServletInit.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\repository\implement\UserRepositoryImpl.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\ApiExerciseController.java
+C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\dto\RatingRequest.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\ApiSubmissionController.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\configs\JwtSecurityConfig.java
 C:\Users\DELL\Desktop\Online-Course\src\main\java\com\htn\controllers\APIDocumentController.java
