@@ -4,6 +4,7 @@
  */
 package com.htn.controllers;
 
+import com.htn.dto.SubmissionDTO;
 import com.htn.service.SubmissionService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +42,17 @@ public class ApiSubmissionController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @PostMapping("/exercises/{exerciseId}/submit")
+    public ResponseEntity<?> submitExercise(@PathVariable int exerciseId, @RequestBody SubmissionDTO submissionDTO) {
+        try {
+            submissionDTO.setExerciseId(exerciseId);
+            submissionService.addSubmissionWithExerciseIdStudentId(submissionDTO);
+            return new ResponseEntity<>("Submission successful", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

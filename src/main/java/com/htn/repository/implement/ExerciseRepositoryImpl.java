@@ -98,4 +98,18 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         return ex;
     }
 
+    @Override
+    public int countExercisesByCourseId(int courseId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+
+        CriteriaQuery<Long> query = builder.createQuery(Long.class);
+        Root<Exercise> root = query.from(Exercise.class);
+
+        query.select(builder.count(root)).where(builder.equal(root.get("courseId").get("id"), courseId));
+
+        Long result = s.createQuery(query).getSingleResult();
+        return result != null ? result.intValue() : 0;
+    }
+
 }

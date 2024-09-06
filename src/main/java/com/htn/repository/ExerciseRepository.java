@@ -19,4 +19,5 @@ public interface ExerciseRepository {
     void addOrUpdate(Exercise ex);
     List<Exercise> getAllExercises();
     Exercise addExercise(Exercise ex);
+    int countExercisesByCourseId(int courseId);
 }

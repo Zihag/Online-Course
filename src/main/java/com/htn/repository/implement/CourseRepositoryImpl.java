@@ -51,10 +51,10 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public List<com.htn.pojo.Course> getCourses(Map<String, String> params) {
+    public List<Course> getCourses(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<com.htn.pojo.Course> q = b.createQuery(com.htn.pojo.Course.class);
+        CriteriaQuery<com.htn.pojo.Course> q = b.createQuery(Course.class);
         Root root = q.from(com.htn.pojo.Course.class);
         q.select(root);
 

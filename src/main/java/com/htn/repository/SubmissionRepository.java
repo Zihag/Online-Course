@@ -14,5 +14,7 @@ import java.util.List;
 public interface SubmissionRepository {
     Submission findSubmissionById(int id);
     void updateSubmission(Submission sub);
+    void addSubmission(Submission sub);
     List<Submission> findSubmissionByExerciseId(int exerciseId);
+    int countSubmissionsByStudentIdAndCourseId(int studentId, int courseId);
 }

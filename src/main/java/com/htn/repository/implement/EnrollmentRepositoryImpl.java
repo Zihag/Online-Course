@@ -59,18 +59,22 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
     public Enrollment findEnrollmentByUserIdandCourseId(int studentId, int courseId) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        
+
         CriteriaQuery<Enrollment> q = builder.createQuery(Enrollment.class);
         Root<Enrollment> r = q.from(Enrollment.class);
-        
+
         Predicate course = builder.equal(r.get("courseId").get("id"), courseId);
         Predicate student = builder.equal(r.get("studentId").get("id"), studentId);
-        
+
         q.select(r).where(builder.and(course, student));
-        
+
         return session.createQuery(q).uniqueResult();
     }
 
-    
+    @Override
+    public void updateEnrollment(Enrollment e) {
+        Session session = this.factory.getObject().getCurrentSession();
+        session.update(e);
+    }
 
 }
