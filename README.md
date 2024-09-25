@@ -12,7 +12,7 @@ This project is an online course management system developed using the Spring Fr
 _Admin interface_
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="./images-for-online-courses-repository/login.png" width="30%">
+  <img src="./images-for-online-courses-repository/loginadmin.png" width="30%">
   <img src="./images-for-online-courses-repository/mainAdmin.png" width="30%">
   <img src="./images/parkingSpotsList.png" width="30%">
   <img src="./images/bookingInfo.png" width="30%">
