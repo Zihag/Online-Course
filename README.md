@@ -24,3 +24,25 @@ _Admin interface_
 
 _User interface_
 
+<div style="display: flex; justify-content: space-between;">
+  <img src="./images-for-online-courses-repository/user-signin.png" width="30%">
+  <img src="./images-for-online-courses-repository/user-signup.png" width="30%">
+</div>
+
+_Student interface_
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./images-for-online-courses-repository/student-cart.png" width="30%">
+  <img src="./images-for-online-courses-repository/student-course.png" width="30%">
+  <img src="./images-for-online-courses-repository/student-home.png" width="30%">
+  <img src="./images-for-online-courses-repository/student-rating.png" width="30%">
+</div>
+
+_Instructor interface_
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./images-for-online-courses-repository/teacher-home.png" width="30%">
+  <img src="./images-for-online-courses-repository/teacher-add-exercise.png" width="30%">
+  <img src="./images-for-online-courses-repository/teacher-course-list.png" width="30%">
+  <img src="./images-for-online-courses-repository/teacher-mark.png" width="30%">
+</div>
