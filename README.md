@@ -13,7 +13,7 @@ _Admin interface_
 
 <div style="display: flex; justify-content: space-between;">
   <img src="./images-for-online-courses-repository/login.png" width="30%">
-  <img src="./images/homepage.png" width="30%">
+  <img src="./images-for-online-courses-repository/mainAdmin.png" width="30%">
   <img src="./images/parkingSpotsList.png" width="30%">
   <img src="./images/bookingInfo.png" width="30%">
   <img src="./images/userList.png" width="30%">
