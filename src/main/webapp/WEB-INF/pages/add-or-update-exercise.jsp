@@ -20,7 +20,6 @@
     </c:otherwise>
 </c:choose>
 <form:form method="post" action="${action}" modelAttribute="exercise">
-    <form:errors path="*" element="div" cssClass="alert alert-danger"/>
     <form:hidden path="id"/>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="title" id="title" placeholder="Enter title" />

@@ -9,7 +9,6 @@
 
 <c:url value="/courses" var="action"/>
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="course" onsubmit="formatPriceBeforeSubmit()">
-    <form:errors path="*" element="div" cssClass="alert alert-danger"/> 
     <form:hidden path="id"/>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="title" id="title" placeholder="Enter title" />
@@ -87,18 +86,18 @@
 <script>
     function formatPrice(input) {
         // Format price input
-        let value = input.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except dot
+        let value = input.value.replace(/[^0-9.]/g, ''); 
         let parts = value.split('.');
         if (parts[1]) {
-            parts[1] = parts[1].substring(0, 2); // Limit decimal places to 2
+            parts[1] = parts[1].substring(0, 2); 
         }
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add comma as thousand separator
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
         input.value = parts.join('.');
     }
 
     function formatPriceBeforeSubmit() {
         let priceInput = document.getElementById('price');
-        let value = priceInput.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except dot
+        let value = priceInput.value.replace(/[^0-9.]/g, '');
         priceInput.value = value;
     }
 </script>

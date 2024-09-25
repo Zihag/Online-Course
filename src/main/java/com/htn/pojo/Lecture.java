@@ -49,11 +49,11 @@ public class Lecture implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 200)
+    @Size(min =1, max = 200, message = "{lecture.title.lenErr}")
     @Column(name = "title")
     private String title;
     @Lob
-    @Size(max = 65535)
+    @Size(min = 1, max = 65535, message = "Insert lecture content")
     @Column(name = "content")
     private String content;
     @Column(name = "created_at")
@@ -65,7 +65,7 @@ public class Lecture implements Serializable {
     @Size(max = 45)
     @Column(name = "lecturecol")
     private String lecturecol;
-    @Size(max = 200)
+    @Size(min = 1, max = 200, message = "Insert lecture video url")
     @Column(name = "url")
     private String url;
     @JoinColumn(name = "course_id", referencedColumnName = "id")

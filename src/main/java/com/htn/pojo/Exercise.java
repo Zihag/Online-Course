@@ -52,13 +52,13 @@ public class Exercise implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message = "Insert exercise title")
     @Column(name = "title")
     private String title;
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 65535, message = "Insert exercise description")
     @Column(name = "description")
     private String description;
     @Column(name = "status")

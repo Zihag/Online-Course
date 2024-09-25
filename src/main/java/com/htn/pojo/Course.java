@@ -56,15 +56,15 @@ public class Course implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 65535, message = "{course.title.lenErr}")
     @Column(name = "title")
     private String title;
     @Lob
-    @Size(max = 65535)
+    @Size(min = 1, max = 65535, message = "{course.description.lenErr}")
     @Column(name = "description")
     private String description;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Insert price")
     @Column(name = "price")
     private double price;
     @Size(max = 100)

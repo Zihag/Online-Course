@@ -50,13 +50,13 @@ public class Document implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "Insert document title")
     @Column(name = "title")
     private String title;
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 65535, message = "Insert document url")
     @Column(name = "url")
     private String url;
     @Column(name = "created_at")
