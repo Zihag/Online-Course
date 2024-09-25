@@ -23,12 +23,12 @@ hibernate.connection.password=your_database_password
 ```
 
 _Frontend_
-
-We use npm for manage package.
+Clone repository from the following link: https://github.com/Zihag/onlineCourseWebReactJS
+We use npm to manage package.
 ```bash
 install npm
 ```
-Run project
+To run the project, use:
 ```bash
 npm start
 ```
