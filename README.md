@@ -12,6 +12,7 @@ _The project is still under development._
 To ensure the app runs smoothly, it is recommended to use Tomcat 9.0 and JDK 17. If you are using an IDE, please use NetBeans 13 or any other compatible IDE.
 
 _Backend_
+
 Edit the following properties in the `database.properties` file.
 
 ```bash
