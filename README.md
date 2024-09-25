@@ -16,6 +16,6 @@ _Admin interface_
   <img src="./images-for-online-courses-repository/mainAdmin.png" width="30%">
   <img src="./images-for-online-courses-repository/assign.png" width="30%">
   <img src="./images-for-online-courses-repository/lecture-manage.png" width="30%">
-  <img src="./images-for-online-courses-repository/update-course"" width="30%">
+  <img src="./images-for-online-courses-repository/update-course.png" width="30%">
   <img src="./images/userInfo.png" width="30%">
 </div>
