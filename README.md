@@ -1,10 +1,11 @@
 # Online-Course
 
-## Overview
+## Project Description
 This project is an online course management system developed using the Spring Framework with the MVC model for admin management. The system also leverages a RESTful API architecture to provide backend services. On the frontend, ReactJS is used to build the user interface.
 
 _The project is still under development._
 ## Database
+### EER diagram in MySQL
 ![a database image](images-for-online-courses-repository/online-course-database.png)
 
 ## Install
