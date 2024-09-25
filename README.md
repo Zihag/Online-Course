@@ -24,14 +24,11 @@ hibernate.connection.password=your_database_password
 _Frontend_
 
 We use npm for manage package.
-
 ```bash
-...
 install npm
 ```
 Run project
 ```bash
-...
 npm start
 ```
 
